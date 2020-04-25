@@ -20,7 +20,9 @@ formChannel.addEventListener("submit", async (e) => {
     const formData = new FormData(formChannel);
 
     const channelName = formData.get("channelName");
-    const userId = localStorage.getItem("DischatUserId");
+
+    // Commented this line out because we never used userId here
+    // const userId = localStorage.getItem("DischatUserId");
 
     let channel = document.createElement("li");
 
