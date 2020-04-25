@@ -25,5 +25,6 @@ leaveSubmit.addEventListener("click", async (e) => {
 })
 
 leaveDeny.addEventListener("click", async (e) => {
+    e.preventDefault();
     leaveServer.classList.add("hidden");
 });
