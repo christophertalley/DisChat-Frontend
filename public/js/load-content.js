@@ -92,7 +92,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
             serverInput.value = '';
             try {
-                const res = await fetch(`http://localhost:8080/${userId}/servers`, {
+                const res = await fetch(`${api}${userId}/servers`, {
                     method: 'POST',
                     body: JSON.stringify(body),
                     headers: {
@@ -181,7 +181,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
             try {
 
-                const res = await fetch(`http://localhost:8080/servers/${serverId}/channels`, {
+                const res = await fetch(`${api}servers/${serverId}/channels`, {
                     method: 'POST',
                     body: JSON.stringify({ channelName: 'Your First Channel' }),
                     headers: {
@@ -207,7 +207,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
 
                 try {
-                    const res = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`, {
+                    const res = await fetch(`${api}channels/${currentChannelId}/messages`, {
                         method: 'POST',
                         body: JSON.stringify({
                             messageContent: welcomeMessage,
