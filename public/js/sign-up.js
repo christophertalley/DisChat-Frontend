@@ -1,5 +1,5 @@
 // import handleErrors from ('/js/utils.js');
-// import { api } from './utils.js';
+import { api } from './utils.js';
 
 
 
@@ -29,6 +29,7 @@ const handleErrors = async (err) => {
         alert(
             "Something went wrong. Please check your internet connection and try again!"
         );
+        console.error(err);
     }
 };
 
