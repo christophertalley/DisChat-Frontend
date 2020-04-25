@@ -22,43 +22,44 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         const parsedRes = await res.json();
         const serverArray = parsedRes.servers;
         const initialServer = serverArray[0];
-        serverId = initialServer.id;
-        serverName = initialServer.serverName;
-        serverTitle.innerHTML = serverName;
+        if (initialServer) {
+            serverId = initialServer.id;
+            serverName = initialServer.serverName;
+            serverTitle.innerHTML = serverName;
 
-        // console.log()
-        initialServer.Channels.forEach(channel => {
-            let newChannel = document.createElement("li");
-            currentChannelId = channel.id;
-            newChannel.dataset.channelId = channel.id;
-            newChannel.dataset.channelName = channel.channelName;
-            newChannel.classList.add("channels-li");
-            newChannel.innerHTML = `<p class="select-channel"> # ${channel.channelName}</p>`;
-            channelList.append(newChannel);
-            channelTitle.innerHTML = initialServer.Channels[initialServer.Channels.length - 1].channelName;
-        })
-        if (initialServer.Channels.length > 0) {
-            socket.emit('join channel', `${initialServer.Channels[initialServer.Channels.length - 1].id}`);
-            const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
-            const parsedMessageRes = await messageRes.json();
-            const messages = parsedMessageRes.messages;
-            messageBox.innerHTML = '';
-            for (let i = messages.length - 1; i > 0; i--) {
-                messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
+            initialServer.Channels.forEach(channel => {
+                let newChannel = document.createElement("li");
+                currentChannelId = channel.id;
+                newChannel.dataset.channelId = channel.id;
+                newChannel.dataset.channelName = channel.channelName;
+                newChannel.classList.add("channels-li");
+                newChannel.innerHTML = `<p class="select-channel"> # ${channel.channelName}</p>`;
+                channelList.append(newChannel);
+                channelTitle.innerHTML = initialServer.Channels[initialServer.Channels.length - 1].channelName;
+            })
+
+            if (initialServer.Channels.length > 0) {
+                socket.emit('join channel', `${initialServer.Channels[initialServer.Channels.length - 1].id}`);
+                const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+                const parsedMessageRes = await messageRes.json();
+                const messages = parsedMessageRes.messages;
+                messageBox.innerHTML = '';
+
+                for (let i = messages.length - 1; i >= 0; i--) {
+                    messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
+                }
+                // messages.forEach(message => {
+                //     messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
+                // });
             }
-            // messages.forEach(message => {
-            //     messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
-            // });
+
+            initialServer.Users.forEach(user => {
+                let newUser = document.createElement('li');
+                newUser.classList.add('users-li');
+                newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+                userList.appendChild(newUser);
+            });
         }
-
-        initialServer.Users.forEach(user => {
-            let newUser = document.createElement('li');
-            newUser.classList.add('users-li');
-            newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
-            userList.appendChild(newUser);
-        });
-
-        // initialServer
 
 
         let displayedChannels = document.querySelectorAll('.channels-li');
@@ -76,7 +77,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 const parsedMessageRes = await messageRes.json();
                 const messages = parsedMessageRes.messages;
                 messageBox.innerHTML = '';
-                for (let i = messages.length - 1; i > 0; i--) {
+                for (let i = messages.length - 1; i >= 0; i--) {
                     messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
                 }
                 // messages.forEach(message => {
@@ -135,7 +136,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     const parsedMessageRes = await messageRes.json();
                     const messages = parsedMessageRes.messages;
                     messageBox.innerHTML = '';
-                    for (let i = messages.length - 1; i > 0; i--) {
+                    for (let i = messages.length - 1; i >= 0; i--) {
                         messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
                     }
                     // messages.forEach(message => {
@@ -171,7 +172,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                         const parsedMessageRes = await messageRes.json();
 
                         const messages = parsedMessageRes.messages;
-                        for (let i = messages.length - 1; i > 0; i--) {
+                        for (let i = messages.length - 1; i >= 0; i--) {
                             messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
                         }
                         // messages.forEach(message => {
@@ -183,7 +184,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 const userResponse = await fetch(`http://localhost:8080/servers/${serverId}/users`);
                 const parsedUserResponse = await userResponse.json();
                 const userArray = parsedUserResponse.users;
-                console.log(userArray);
+
                 // let newUserList = "";
                 userArray.forEach(user => {
                     let newUser = document.createElement('li');

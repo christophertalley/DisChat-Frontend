@@ -10,7 +10,6 @@ const channelInput = document.getElementById('newChannel');
 addChannel.addEventListener("click", async (e) => {
     e.preventDefault();
     formChannel.classList.toggle("hidden");
-    console.log(serverId);
 })
 
 
