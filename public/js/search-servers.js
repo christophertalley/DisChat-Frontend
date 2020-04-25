@@ -27,7 +27,7 @@ searchForm.addEventListener('submit', async (e) => {
         searchForm.classList.add('hidden');
 
         const parsedRes = await res.json();
-        console.log(parsedRes);
+        // console.log(parsedRes);
         const server = parsedRes.foundServer;
 
         joinServerId = server.id;

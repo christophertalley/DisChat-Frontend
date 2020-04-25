@@ -2,7 +2,7 @@
 // const api = document.querySelector('link[rel="api"]').href;
 const joinButton = document.querySelector(".server-join-confirm");
 const cancelButton = document.querySelector(".server-join-deny");
-
+const joinServerInput = document.getElementById('newJoinServer');
 const joinServerForm = document.querySelector(".confirm-join-server");
 
 cancelButton.addEventListener("click", async (e) => {
@@ -12,29 +12,205 @@ cancelButton.addEventListener("click", async (e) => {
 
 joinButton.addEventListener('click', async (e) => {
     e.preventDefault();
-
+    joinServerInput.value = '';
     joinServerForm.classList.toggle("hidden");
 
     const UserId = localStorage.getItem("DischatUserId");
 
+    let newServer = document.createElement("li");
+    newServer.classList.add("servers-li");
+    newServer.innerHTML = '<img src="/images/sign-in-background.png" class="server-display">';
+    serverList.append(newServer);
+    // textInputBox.classList.add("hidden");
+    // textInputBox.classList.remove("new-message-form");
 
-    try {
-        console.log(joinServerId);
-        console.log(UserId);
-        const res = await fetch(`${api}userservers`, {
-            method: 'POST',
-            body: JSON.stringify({ joinServerId, UserId }),
-            headers: {
-                "Content-Type": 'application/json',
+
+    // Where is it getting joinServerId from?
+    const res = await fetch(`${api}userservers`, {
+        method: 'POST',
+        body: JSON.stringify({ joinServerId, UserId }),
+        headers: {
+            "Content-Type": 'application/json',
+        }
+    });
+
+    if (!res.ok) {
+        throw res;
+    }
+
+
+    const parsedRes = await res.json();
+    const server = parsedRes.server;
+
+    channelList.innerHTML = '';
+    messageBox.innerHTML = '';
+    channelTitle.innerHTML = '';
+    userList.innerHTML = '';
+
+    newServer.setAttribute('id', server.id)
+    newServer.dataset.serverId = server.id;
+    newServer.dataset.serverName = server.serverName;
+    serverTitle.innerHTML = server.serverName;
+    socket.emit('leave channel', `${currentChannelId}`)
+
+    serverId = server.id;
+
+    server.Channels.forEach(channel => {
+        let newChannel = document.createElement("li");
+        currentChannelId = channel.id;
+        newChannel.dataset.channelId = channel.id;
+        newChannel.dataset.channelName = channel.channelName;
+        newChannel.classList.add("channels-li");
+        newChannel.innerHTML = `<p class="select-channel"> # ${channel.channelName}</p>`;
+        channelList.append(newChannel);
+        channelTitle.innerHTML = server.Channels[server.Channels.length - 1].channelName;
+    })
+
+    if (server.Channels.length > 0) {
+        socket.emit('join channel', `${server.Channels[server.Channels.length - 1].id}`);
+        const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
+        const parsedMessageRes = await messageRes.json();
+        const messages = parsedMessageRes.messages;
+        messageBox.innerHTML = '';
+
+        for (let i = messages.length - 1; i >= 0; i--) {
+            if (messages[i].UserId === null) {
+                messageBox.innerHTML += `<p class="messages">DisChat Welcome Bot: <br/> ${messages[i].messageContent}</p>`;
+            } else {
+                messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
             }
-        });
-        console.log(res);
-        if (!res.ok) {
-            throw res;
+        }
+        // messages.forEach(message => {
+        //     messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
+        // });
+    }
+
+    let displayedChannels = document.querySelectorAll('.channels-li');
+    displayedChannels.forEach(channel => {
+        channel.addEventListener('click', async (e) => {
+
+            socket.emit('leave channel', `${currentChannelId}`);
+            currentChannelId = e.currentTarget.dataset.channelId;
+            socket.emit('join channel', `${currentChannelId}`)
+
+            const currentChannelName = e.currentTarget.dataset.channelName;
+            channelTitle.innerHTML = currentChannelName;
+            // fetch call with channelid to get messages
+            const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
+            const parsedMessageRes = await messageRes.json();
+            const messages = parsedMessageRes.messages;
+            messageBox.innerHTML = '';
+            for (let i = messages.length - 1; i >= 0; i--) {
+                if (messages[i].UserId === null) {
+                    messageBox.innerHTML += `<p class="messages">DisChat Welcome Bot: <br/> ${messages[i].messageContent}</p>`;
+                } else {
+                    messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
+                }
+            }
+
+        })
+    })
+
+    server.Users.forEach(user => {
+        let newUser = document.createElement('li');
+        newUser.classList.add('users-li');
+        newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+        userList.appendChild(newUser);
+    });
+
+    newServer.addEventListener('click', async (e) => {
+
+        serverId = e.currentTarget.dataset.serverId;
+        serverName = e.currentTarget.dataset.serverName;
+        serverTitle.innerHTML = serverName;
+        channelList.innerHTML = '';
+        userList.innerHTML = '';
+        messageBox.innerHTML = '';
+
+        const response = await fetch(`${api}servers/${serverId}/channels`);
+        const parsedResponse = await response.json();
+        const channels = parsedResponse.channels;
+        socket.emit('leave channel', `${currentChannelId}`);
+        if (channels.length !== 0) {
+            textInputBox.classList.remove("hidden");
+            textInputBox.classList.add("new-message-form");
+            currentChannelId = channels[0].id;
+            socket.emit('join channel', `${currentChannelId}`)
+
+            channels.forEach(channel => {
+                let newChannel = document.createElement("li");
+                newChannel.dataset.channelId = channel.id;
+                newChannel.dataset.channelName = channel.channelName;
+                newChannel.classList.add("channels-li");
+                newChannel.innerHTML = `<p class="select-channel"> # ${channel.channelName}</p>`;
+                channelList.append(newChannel);
+                channelTitle.innerHTML = channels[0].channelName;
+            })
+
+            const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
+            const parsedMessageRes = await messageRes.json();
+            const messages = parsedMessageRes.messages;
+            messageBox.innerHTML = '';
+            for (let i = messages.length - 1; i >= 0; i--) {
+                if (messages[i].UserId === null) {
+                    messageBox.innerHTML += `<p class="messages">DisChat Welcome Bot: <br/> ${messages[i].messageContent}</p>`;
+                } else {
+                    messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
+                }
+            }
+        } else {
+            currentChannelId = '';
         }
 
-    } catch {
 
-    }
+
+        if (channels.length === 0) {
+            channelTitle.innerHTML = "";
+            textInputBox.classList.add("hidden");
+            textInputBox.classList.remove("new-message-form");
+        }
+
+
+        let displayedChannels = document.querySelectorAll('.channels-li');
+
+        displayedChannels.forEach(channel => {
+            channel.addEventListener('click', async (e) => {
+
+                socket.emit('leave channel', `${currentChannelId}`);
+                currentChannelId = e.currentTarget.dataset.channelId;
+                socket.emit('join channel', `${currentChannelId}`)
+                const currentChannelName = e.currentTarget.dataset.channelName;
+
+                messageBox.innerHTML = '';
+                channelTitle.innerHTML = currentChannelName;
+                // fetch call with channelid to get messages
+                const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
+                const parsedMessageRes = await messageRes.json();
+
+                const messages = parsedMessageRes.messages;
+                for (let i = messages.length - 1; i >= 0; i--) {
+                    if (messages[i].UserId === null) {
+                        messageBox.innerHTML += `<p class="messages">DisChat Welcome Bot: <br/> ${messages[i].messageContent}</p>`;
+                    } else {
+                        messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
+                    }
+
+                }
+            })
+        })
+
+        const userResponse = await fetch(`${api}servers/${serverId}/users`);
+        const parsedUserResponse = await userResponse.json();
+        const userArray = parsedUserResponse.users;
+
+        userArray.forEach(user => {
+            let newUser = document.createElement('li');
+            newUser.classList.add('users-li');
+            newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+            userList.appendChild(newUser);
+        })
+
+    })
+
 
 })
