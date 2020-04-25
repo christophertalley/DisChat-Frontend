@@ -1,8 +1,16 @@
 // import { api } from './utils.js';
 // const api = document.querySelector('link[rel="api"]').href;
 const deleteIcon = document.getElementById("delete-icon");
+const deleteConfirmForm = document.querySelector(".confirm-delete-channel");
+const deleteFormConfirmButton = document.querySelector(".delete-channel-confirm");
+const deleteFormCancelButton = document.querySelector(".delete-channel-deny");
 
 deleteIcon.addEventListener('click', async (e) => {
+
+    deleteConfirmForm.classList.toggle("hidden");
+});
+
+deleteFormConfirmButton.addEventListener('click', async (e) => {
 
     socket.emit('leave channel', `${currentChannelId}`);
 
@@ -19,7 +27,7 @@ deleteIcon.addEventListener('click', async (e) => {
 
     channelList.innerHTML = '';
     userList.innerHTML = '';
-    messageBox.innerHTML = '';
+    deleteConfirmForm.classList.toggle("hidden");
     const response = await fetch(`${api}servers/${serverId}/channels`);
     const parsedResponse = await response.json();
     const channels = parsedResponse.channels;
@@ -86,26 +94,40 @@ deleteIcon.addEventListener('click', async (e) => {
             // messages.forEach(message => {
             //     messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
             // });
-        })
-    })
 
-    // const userResponse = await fetch(`${api}servers/${serverId}/users`);
-    // const parsedUserResponse = await userResponse.json();
-    // const userArray = parsedUserResponse.users;
-    // console.log(userArray);
-    // // let newUserList = "";
-    // userArray.forEach(user => {
-    //     let newUser = document.createElement('li');
-    //     newUser.classList.add('users-li');
 
-    //     // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
-    //     newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
-    //     // newUserList += newUser;
-    //     // console.log(newUserList);
-    //     userList.appendChild(newUser);
-    //     // userList.innerHTML = newUserList;
-    // })
 
+
+
+        });
+    });
+});
+
+deleteFormCancelButton.addEventListener('click', (e) => {
+    deleteConfirmForm.classList.toggle("hidden");
 })
+
+// }
+//         })
+//     })
+
+//     // const userResponse = await fetch(`${api}servers/${serverId}/users`);
+//     // const parsedUserResponse = await userResponse.json();
+//     // const userArray = parsedUserResponse.users;
+//     // console.log(userArray);
+//     // // let newUserList = "";
+//     // userArray.forEach(user => {
+//     //     let newUser = document.createElement('li');
+//     //     newUser.classList.add('users-li');
+
+//     //     // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
+//     //     newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+//     //     // newUserList += newUser;
+//     //     // console.log(newUserList);
+//     //     userList.appendChild(newUser);
+//     //     // userList.innerHTML = newUserList;
+//     // })
+
+// });
 
 

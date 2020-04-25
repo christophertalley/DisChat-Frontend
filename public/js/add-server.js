@@ -68,17 +68,12 @@ formServer.addEventListener("submit", async (e) => {
         const parsedUserResponse = await userResponse.json();
         const userArray = parsedUserResponse.users;
 
-        // let newUserList = "";
+
         userArray.forEach(user => {
             let newUser = document.createElement('li');
             newUser.classList.add('users-li');
-
-            // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
             newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
-            // newUserList += newUser;
-            // console.log(newUserList);
             userList.appendChild(newUser);
-            // userList.innerHTML = newUserList;
         })
 
 
@@ -87,30 +82,6 @@ formServer.addEventListener("submit", async (e) => {
     }
 
     newServer.addEventListener('click', async (e) => {
-        //     serverId = e.currentTarget.dataset.serverId;
-        //     serverName = e.currentTarget.dataset.serverName;
-        //     serverTitle.innerHTML = serverName;
-        //     channelList.innerHTML = '';
-        //     const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
-        //     const parsedResponse = await response.json();
-        //     const channels = parsedResponse.channels;
-        //     messageBox.innerHTML = '';
-        //     if (channels.length === 0) {
-        //         channelTitle.innerHTML = "";
-        //     }
-        //     channels.forEach(channel => {
-        //         let newChannel = document.createElement("li");
-        //         newChannel.dataset.channelId = channel.id;
-        //         newServer.dataset.channelName = channel.channelName;
-        //         newChannel.classList.add("channels-li");
-        //         newChannel.innerHTML = `<p class="select-channel"> # ${channel.channelName}</p>`;
-        //         channelList.appendChild(newChannel);
-        //         channelTitle.innerHTML = channels[0].channelName;
-        //     })
-        //     // const userResponse = await fetch(`http://localhost:8080/servers/${serverId}/users`);
-        //     // const parsedUserResponse = await userResponse.json();
-        //     // const userArray = parsedUserResponse.users;
-        // })
 
         serverId = e.currentTarget.dataset.serverId;
         serverName = e.currentTarget.dataset.serverName;
