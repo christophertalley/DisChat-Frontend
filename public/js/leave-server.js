@@ -9,7 +9,9 @@ leaveButton.addEventListener("click", async (e) => {
 });
 
 leaveSubmit.addEventListener("click", async (e) => {
-    e.preventDefault();
+    // Got rid of this to make the page reload again. I have no idea how it was ever reloading
+    // with this in the code.
+    // e.preventDefault();
     leaveServer.classList.add("hidden");
 
 
@@ -26,5 +28,6 @@ leaveSubmit.addEventListener("click", async (e) => {
 })
 
 leaveDeny.addEventListener("click", async (e) => {
+    e.preventDefault();
     leaveServer.classList.add("hidden");
 });

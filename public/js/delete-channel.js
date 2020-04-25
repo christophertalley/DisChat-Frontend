@@ -3,9 +3,11 @@ const deleteIcon = document.getElementById("delete-icon");
 
 deleteIcon.addEventListener('click', async (e) => {
 
-
-
     socket.emit('leave channel', `${currentChannelId}`);
+
+
+
+
 
     const res = await fetch(`${api}channels/${currentChannelId}`, {
         method: 'DELETE'
@@ -20,7 +22,7 @@ deleteIcon.addEventListener('click', async (e) => {
     const response = await fetch(`${api}servers/${serverId}/channels`);
     const parsedResponse = await response.json();
     const channels = parsedResponse.channels;
-    socket.emit('leave channel', `${currentChannelId}`);
+
     if (channels.length !== 0) {
         textInputBox.classList.remove("hidden");
         textInputBox.classList.add("new-message-form");
@@ -86,26 +88,23 @@ deleteIcon.addEventListener('click', async (e) => {
         })
     })
 
-    const userResponse = await fetch(`${api}servers/${serverId}/users`);
-    const parsedUserResponse = await userResponse.json();
-    const userArray = parsedUserResponse.users;
-    console.log(userArray);
-    // let newUserList = "";
-    userArray.forEach(user => {
-        let newUser = document.createElement('li');
-        newUser.classList.add('users-li');
+    // const userResponse = await fetch(`${api}servers/${serverId}/users`);
+    // const parsedUserResponse = await userResponse.json();
+    // const userArray = parsedUserResponse.users;
+    // console.log(userArray);
+    // // let newUserList = "";
+    // userArray.forEach(user => {
+    //     let newUser = document.createElement('li');
+    //     newUser.classList.add('users-li');
 
-        // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
-        newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
-        // newUserList += newUser;
-        // console.log(newUserList);
-        userList.appendChild(newUser);
-        // userList.innerHTML = newUserList;
-    })
+    //     // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
+    //     newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+    //     // newUserList += newUser;
+    //     // console.log(newUserList);
+    //     userList.appendChild(newUser);
+    //     // userList.innerHTML = newUserList;
+    // })
 
-    // if ()
-    // userList.innerHTML = newUserList;
-    // userList.innerHTML = '';
 })
 
 
