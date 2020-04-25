@@ -60,6 +60,14 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 userList.appendChild(newUser);
             });
         }
+        // else {
+        //     const channelTitle = document.getElementById('channel-name');
+        //     let newServer = document.createElement("li");
+        //     newServer.classList.add("servers-li");
+
+        //     newServer.innerHTML = '<img src="/images/sign-in-background.png" class="server-display">';
+        //     serverList.append(newServer);
+        // }
 
 
         let displayedChannels = document.querySelectorAll('.channels-li');
