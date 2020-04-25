@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     if (messages[i].UserId === null) {
                         messageBox.innerHTML += `<p class="messages">DisChat Welcome Bot: <br/> ${messages[i].messageContent}</p>`;
                     } else {
-                        messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
+                        messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p><br/><br/>`;
                     }
                 }
                 // messages.forEach(message => {
@@ -87,8 +87,9 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             // textInputBox.classList.remove("new-message-form");
 
             const userId = localStorage.getItem("DischatUserId");
+            const userName = localStorage.getItem("DischatUserName");
 
-            const body = { serverName: 'Your First Server' };
+            const body = { serverName: `${userName}'s First Server` };
 
             serverInput.value = '';
             try {
