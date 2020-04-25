@@ -1,4 +1,4 @@
-import { api } from './utils';
+import { api } from './utils.js';
 const addServer = document.querySelector("#add-button");
 const serverList = document.querySelector("#server-list");
 const formServer = document.querySelector(".create-box");

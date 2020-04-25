@@ -1,4 +1,4 @@
-import { api } from './utils';
+import { api } from './utils.js';
 let serverId;
 let serverName;
 let currentChannelId;

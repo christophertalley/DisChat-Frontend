@@ -1,4 +1,4 @@
-import { api } from './utils';
+import { api } from './utils.js';
 const joinButton = document.querySelector(".server-join-confirm");
 const cancelButton = document.querySelector(".server-join-deny");
 

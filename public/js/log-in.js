@@ -1,4 +1,4 @@
-import { api } from './utils';
+import { api } from './utils.js';
 
 const handleErrors = async (err) => {
     if (err.status >= 400 && err.status < 600) {

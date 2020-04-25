@@ -1,4 +1,4 @@
-import { api } from './utils';
+import { api } from './utils.js';
 const socket = io();
 
 const sendButton = document.querySelector('.message-submit');
