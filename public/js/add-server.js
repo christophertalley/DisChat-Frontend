@@ -139,7 +139,7 @@ formServer.addEventListener("submit", async (e) => {
                 channelTitle.innerHTML = channels[0].channelName;
             })
 
-            const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+            const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
             const parsedMessageRes = await messageRes.json();
             const messages = parsedMessageRes.messages;
             messageBox.innerHTML = '';
@@ -179,7 +179,7 @@ formServer.addEventListener("submit", async (e) => {
                 messageBox.innerHTML = '';
                 channelTitle.innerHTML = currentChannelName;
                 // fetch call with channelid to get messages
-                const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+                const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
                 const parsedMessageRes = await messageRes.json();
 
                 const messages = parsedMessageRes.messages;
@@ -197,7 +197,7 @@ formServer.addEventListener("submit", async (e) => {
             })
         })
 
-        const userResponse = await fetch(`http://localhost:8080/servers/${serverId}/users`);
+        const userResponse = await fetch(`${api}servers/${serverId}/users`);
         const parsedUserResponse = await userResponse.json();
         const userArray = parsedUserResponse.users;
 

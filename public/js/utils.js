@@ -24,7 +24,8 @@ export const handleErrors = async (err) => {
         alert(
             "Something went wrong. Please check your internet connection and try again!"
         );
+        console.error(err)
     }
 };
 
-// export const api = document.querySelector('link[rel="api"]').href;
+export const api = document.querySelector('link[rel="api"]').href;
