@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/chat.css">
+    link(rel="api" href=`${api}`)
     <title>DisChat</title>
 </head>
 <body>
@@ -98,13 +99,13 @@
     </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
-script(src="/js/add-server.js")
-script(src="/js/chat.js")
-script(src="/js/add-channel.js")
-script(src="/js/load-content.js")
-script(src="/js/join-server.js")
-script(src="/js/search-servers.js")
-script(src="/js/leave-server.js")
-script(src="/js/delete-channel.js")
+script(src="/js/add-server.js" type="module")
+script(src="/js/chat.js" type="module")
+script(src="/js/add-channel.js" type="module")
+script(src="/js/load-content.js" type="module")
+script(src="/js/join-server.js" type="module")
+script(src="/js/search-servers.js" type="module")
+script(src="/js/leave-server.js" type="module")
+script(src="/js/delete-channel.js" type="module")
 //- script(src="/js/load-messages.js")
 </html>

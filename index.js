@@ -4,6 +4,8 @@ const socketio = require('socket.io');
 
 const pug = require('pug');
 
+const { api, port } = require('./config');
+
 const app = express();
 
 
@@ -13,9 +15,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/images', express.static(path.join(__dirname, 'images')))
 // console.log(__dirname);
 
+app.use((req, res, next) => {
+    res.locals.api = api;
+    next();
+})
+
 app.get('/', (req, res) => {
     res.render('landing-page');
-})
+});
 
 app.get("/sign-up", (req, res) => {
     // res.sendFile(path.join(__dirname, "public") + '/sign-in.html');
@@ -30,7 +37,7 @@ app.get("/log-in", (req, res) => {
 app.get('/home', (req, res) => {
     res.render('chat')
 })
-const port = 4000;
+// const port = 4000;
 
 
 const server = app.listen(port, () => console.log(`Listening on port:${port}`));

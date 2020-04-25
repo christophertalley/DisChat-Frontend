@@ -1,3 +1,4 @@
+import { api } from './utils.js';
 const addServer = document.querySelector("#add-button");
 const serverList = document.querySelector("#server-list");
 const formServer = document.querySelector(".create-box");
@@ -38,7 +39,7 @@ formServer.addEventListener("submit", async (e) => {
     userList.innerHTML = '';
     serverInput.value = '';
     try {
-        const res = await fetch(`http://localhost:8080/${userId}/servers`, {
+        const res = await fetch(`${api}${userId}/servers`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -62,7 +63,7 @@ formServer.addEventListener("submit", async (e) => {
 
         serverId = server.id;
 
-        const userResponse = await fetch(`http://localhost:8080/servers/${serverId}/users`);
+        const userResponse = await fetch(`${api}servers/${serverId}/users`);
         const parsedUserResponse = await userResponse.json();
         const userArray = parsedUserResponse.users;
 
@@ -116,7 +117,8 @@ formServer.addEventListener("submit", async (e) => {
         channelList.innerHTML = '';
         userList.innerHTML = '';
         messageBox.innerHTML = '';
-        const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
+
+        const response = await fetch(`${api}servers/${serverId}/channels`);
         const parsedResponse = await response.json();
         const channels = parsedResponse.channels;
         socket.emit('leave channel', `${currentChannelId}`);

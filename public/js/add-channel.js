@@ -1,3 +1,4 @@
+import { api } from './utils.js';
 const addChannel = document.querySelector(".add-channel");
 const channelList = document.querySelector(".display-channels");
 const formChannel = document.querySelector(".create-channel");
@@ -26,6 +27,13 @@ formChannel.addEventListener("submit", async (e) => {
 
     let channel = document.createElement("li");
 
+    channel.classList.add("channels-li");
+    channel.innerHTML = `<p class="select-channel"> # ${channelName}</p>`;
+    channelList.prepend(channel);
+    formChannel.classList.add("hidden");
+    channelTitle.innerHTML = channelName;
+    textInputBox.classList.remove("hidden");
+    textInputBox.classList.add("new-message-form");
 
     const body = { channelName };
 
@@ -33,7 +41,7 @@ formChannel.addEventListener("submit", async (e) => {
 
     try {
 
-        const res = await fetch(`http://localhost:8080/servers/${serverId}/channels`, {
+        const res = await fetch(`${api}servers/${serverId}/channels`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -72,7 +80,7 @@ formChannel.addEventListener("submit", async (e) => {
             const currentChannelName = e.currentTarget.dataset.channelName;
             channelTitle.innerHTML = currentChannelName;
             messageBox.innerHTML = '';
-            const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+            const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
             const parsedMessageRes = await messageRes.json();
             const messages = parsedMessageRes.messages;
             messages.forEach(message => {

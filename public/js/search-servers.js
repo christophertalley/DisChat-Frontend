@@ -1,3 +1,5 @@
+import { api } from './utils.js';
+
 const searchForm = document.querySelector(".join-server");
 const searchIcon = document.getElementById("join-button");
 
@@ -16,7 +18,7 @@ searchForm.addEventListener('submit', async (e) => {
 
     try {
 
-        const res = await fetch(`http://localhost:8080/servers/find/${joinServerName}`);
+        const res = await fetch(`${api}servers/find/${joinServerName}`);
         if (!res.ok) {
             throw res;
         }

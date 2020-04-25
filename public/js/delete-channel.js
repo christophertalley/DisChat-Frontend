@@ -1,3 +1,4 @@
+import { api } from './utils.js';
 const deleteIcon = document.getElementById("delete-icon");
 
 deleteIcon.addEventListener('click', async (e) => {
@@ -8,7 +9,7 @@ deleteIcon.addEventListener('click', async (e) => {
 
 
 
-    const res = await fetch(`http://localhost:8080/channels/${currentChannelId}`, {
+    const res = await fetch(`${api}channels/${currentChannelId}`, {
         method: 'DELETE'
     });
     if (!res.ok) {
@@ -18,12 +19,7 @@ deleteIcon.addEventListener('click', async (e) => {
     channelList.innerHTML = '';
     userList.innerHTML = '';
     messageBox.innerHTML = '';
-    channelTitle.innerHTML = '';
-    // window.location.href = '/home';
-
-
-
-    const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
+    const response = await fetch(`${api}servers/${serverId}/channels`);
     const parsedResponse = await response.json();
     const channels = parsedResponse.channels;
 
@@ -43,7 +39,7 @@ deleteIcon.addEventListener('click', async (e) => {
             channelTitle.innerHTML = channels[0].channelName;
         })
 
-        const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+        const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
         const parsedMessageRes = await messageRes.json();
         const messages = parsedMessageRes.messages;
         messageBox.innerHTML = '';
@@ -79,7 +75,7 @@ deleteIcon.addEventListener('click', async (e) => {
             messageBox.innerHTML = '';
             channelTitle.innerHTML = currentChannelName;
             // fetch call with channelid to get messages
-            const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+            const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
             const parsedMessageRes = await messageRes.json();
 
             const messages = parsedMessageRes.messages;
@@ -92,9 +88,22 @@ deleteIcon.addEventListener('click', async (e) => {
         })
     })
 
-    // console.log(e);
+    // const userResponse = await fetch(`${api}servers/${serverId}/users`);
+    // const parsedUserResponse = await userResponse.json();
+    // const userArray = parsedUserResponse.users;
+    // console.log(userArray);
+    // // let newUserList = "";
+    // userArray.forEach(user => {
+    //     let newUser = document.createElement('li');
+    //     newUser.classList.add('users-li');
 
-
+    //     // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
+    //     newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+    //     // newUserList += newUser;
+    //     // console.log(newUserList);
+    //     userList.appendChild(newUser);
+    //     // userList.innerHTML = newUserList;
+    // })
 
 })
 

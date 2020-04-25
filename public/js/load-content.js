@@ -1,3 +1,4 @@
+import { api } from './utils.js';
 let serverId;
 let serverName;
 let currentChannelId;
@@ -19,7 +20,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     userName.innerHTML = localStorage.getItem('DischatUserName');
 
     try {
-        const res = await fetch(`http://localhost:8080/${userId}/servers`);
+        const res = await fetch(`${api}${userId}/servers`);
         const parsedRes = await res.json();
         const serverArray = parsedRes.servers;
         const initialServer = serverArray[0];
@@ -43,7 +44,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
             if (initialServer.Channels.length > 0) {
                 socket.emit('join channel', `${initialServer.Channels[initialServer.Channels.length - 1].id}`);
-                const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+                const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
                 const parsedMessageRes = await messageRes.json();
                 const messages = parsedMessageRes.messages;
                 messageBox.innerHTML = '';
@@ -245,7 +246,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 const currentChannelName = e.currentTarget.dataset.channelName;
                 channelTitle.innerHTML = currentChannelName;
                 // fetch call with channelid to get messages
-                const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+                const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
                 const parsedMessageRes = await messageRes.json();
                 const messages = parsedMessageRes.messages;
                 messageBox.innerHTML = '';
@@ -288,7 +289,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 channelList.innerHTML = '';
                 userList.innerHTML = '';
                 messageBox.innerHTML = '';
-                const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
+                const response = await fetch(`${api}servers/${serverId}/channels`);
                 const parsedResponse = await response.json();
                 const channels = parsedResponse.channels;
                 socket.emit('leave channel', `${currentChannelId}`);
@@ -308,7 +309,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                         channelTitle.innerHTML = channels[0].channelName;
                     })
 
-                    const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+                    const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
                     const parsedMessageRes = await messageRes.json();
                     const messages = parsedMessageRes.messages;
                     messageBox.innerHTML = '';
@@ -348,7 +349,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                         messageBox.innerHTML = '';
                         channelTitle.innerHTML = currentChannelName;
                         // fetch call with channelid to get messages
-                        const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+                        const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
                         const parsedMessageRes = await messageRes.json();
 
                         const messages = parsedMessageRes.messages;
@@ -366,7 +367,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     })
                 })
 
-                const userResponse = await fetch(`http://localhost:8080/servers/${serverId}/users`);
+                const userResponse = await fetch(`${api}servers/${serverId}/users`);
                 const parsedUserResponse = await userResponse.json();
                 const userArray = parsedUserResponse.users;
 

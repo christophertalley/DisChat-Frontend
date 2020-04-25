@@ -1,3 +1,4 @@
+import { api } from './utils.js';
 const socket = io();
 
 const sendButton = document.querySelector('.message-submit');
@@ -20,7 +21,7 @@ sendButton.addEventListener('click', async e => {
     })
 
     try {
-        const res = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`, {
+        const res = await fetch(`${api}channels/${currentChannelId}/messages`, {
             method: 'POST',
             body: JSON.stringify({
                 messageContent: chatInput.value,
