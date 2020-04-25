@@ -2,9 +2,11 @@ const deleteIcon = document.getElementById("delete-icon");
 
 deleteIcon.addEventListener('click', async (e) => {
 
-
-
     socket.emit('leave channel', `${currentChannelId}`);
+
+
+
+
 
     const res = await fetch(`http://localhost:8080/channels/${currentChannelId}`, {
         method: 'DELETE'
@@ -16,10 +18,15 @@ deleteIcon.addEventListener('click', async (e) => {
     channelList.innerHTML = '';
     userList.innerHTML = '';
     messageBox.innerHTML = '';
+    channelTitle.innerHTML = '';
+    // window.location.href = '/home';
+
+
+
     const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
     const parsedResponse = await response.json();
     const channels = parsedResponse.channels;
-    socket.emit('leave channel', `${currentChannelId}`);
+
     if (channels.length !== 0) {
         textInputBox.classList.remove("hidden");
         textInputBox.classList.add("new-message-form");
@@ -85,26 +92,10 @@ deleteIcon.addEventListener('click', async (e) => {
         })
     })
 
-    const userResponse = await fetch(`http://localhost:8080/servers/${serverId}/users`);
-    const parsedUserResponse = await userResponse.json();
-    const userArray = parsedUserResponse.users;
-    console.log(userArray);
-    // let newUserList = "";
-    userArray.forEach(user => {
-        let newUser = document.createElement('li');
-        newUser.classList.add('users-li');
+    // console.log(e);
 
-        // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
-        newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
-        // newUserList += newUser;
-        // console.log(newUserList);
-        userList.appendChild(newUser);
-        // userList.innerHTML = newUserList;
-    })
 
-    // if ()
-    // userList.innerHTML = newUserList;
-    // userList.innerHTML = '';
+
 })
 
 

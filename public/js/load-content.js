@@ -4,6 +4,7 @@ let currentChannelId;
 let joinServerId;
 
 const userList = document.querySelector('#users-list');
+const channelTitle = document.getElementById('channel-name');
 
 window.addEventListener("DOMContentLoaded", async (e) => {
     const serverList = document.querySelector("#server-list");
@@ -12,7 +13,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     const userId = localStorage.getItem("DischatUserId");
     const addServer = document.querySelector("#add-button");
     const serverTitle = document.querySelector(".server-name");
-    const channelTitle = document.getElementById('channel-name');
+
     const userName = document.querySelector('.username');
 
     userName.innerHTML = localStorage.getItem('DischatUserName');

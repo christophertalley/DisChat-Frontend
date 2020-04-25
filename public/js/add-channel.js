@@ -26,28 +26,28 @@ formChannel.addEventListener("submit", async (e) => {
 
     let channel = document.createElement("li");
 
-    channel.classList.add("channels-li");
-    channel.innerHTML = `<p class="select-channel"> # ${channelName}</p>`;
-    channelList.prepend(channel);
-    formChannel.classList.add("hidden");
-    channelTitle.innerHTML = channelName;
-    textInputBox.classList.remove("hidden");
-    textInputBox.classList.add("new-message-form");
+    // channel.classList.add("channels-li");
+    // channel.innerHTML = `<p class="select-channel"> # ${channelName}</p>`;
+    // channelList.prepend(channel);
+    // formChannel.classList.add("hidden");
+    // channelTitle.innerHTML = channelName;
+    // textInputBox.classList.remove("hidden");
+    // textInputBox.classList.add("new-message-form");
 
-    channel.addEventListener('click', async (e) => {
-        socket.emit('leave channel', `${currentChannelId}`);
-        currentChannelId = e.currentTarget.dataset.channelId;
-        socket.emit('join channel', `${currentChannelId}`);
-        const currentChannelName = e.currentTarget.dataset.channelName;
-        channelTitle.innerHTML = currentChannelName;
-        messageBox.innerHTML = '';
-        const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
-        const parsedMessageRes = await messageRes.json();
-        const messages = parsedMessageRes.messages;
-        messages.forEach(message => {
-            messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
-        });
-    })
+    // channel.addEventListener('click', async (e) => {
+    //     socket.emit('leave channel', `${currentChannelId}`);
+    //     currentChannelId = e.currentTarget.dataset.channelId;
+    //     socket.emit('join channel', `${currentChannelId}`);
+    //     const currentChannelName = e.currentTarget.dataset.channelName;
+    //     channelTitle.innerHTML = currentChannelName;
+    //     messageBox.innerHTML = '';
+    //     const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+    //     const parsedMessageRes = await messageRes.json();
+    //     const messages = parsedMessageRes.messages;
+    //     messages.forEach(message => {
+    //         messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
+    //     });
+    // })
 
     const body = { channelName };
 
@@ -75,6 +75,36 @@ formChannel.addEventListener("submit", async (e) => {
 
         currentChannelId = newChannel.id;
         socket.emit('join channel', `${currentChannelId}`);
+
+
+        // let channel = document.createElement("li");
+
+        channel.classList.add("channels-li");
+        channel.innerHTML = `<p class="select-channel"> # ${channelName}</p>`;
+        channelList.prepend(channel);
+        formChannel.classList.add("hidden");
+        channelTitle.innerHTML = channelName;
+        textInputBox.classList.remove("hidden");
+        textInputBox.classList.add("new-message-form");
+
+        channel.addEventListener('click', async (e) => {
+            socket.emit('leave channel', `${currentChannelId}`);
+            currentChannelId = e.currentTarget.dataset.channelId;
+            socket.emit('join channel', `${currentChannelId}`);
+            const currentChannelName = e.currentTarget.dataset.channelName;
+            channelTitle.innerHTML = currentChannelName;
+            messageBox.innerHTML = '';
+            const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+            const parsedMessageRes = await messageRes.json();
+            const messages = parsedMessageRes.messages;
+            messages.forEach(message => {
+                messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
+            });
+        })
+
+
+
+
     } catch (e) {
         console.error(e)
     }
