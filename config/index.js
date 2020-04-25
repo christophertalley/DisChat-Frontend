@@ -4,5 +4,5 @@ module.exports = {
             ? process.env.DEV_API
             : process.env.PROD_API,
 
-    port: process.env.PORT
+    port: process.env.PORT || 4000
 };
