@@ -1,4 +1,5 @@
-import { api } from './utils.js';
+// import { api } from './utils.js';
+// const api = document.querySelector('link[rel="api"]').href;
 const addChannel = document.querySelector(".add-channel");
 const channelList = document.querySelector(".display-channels");
 const formChannel = document.querySelector(".create-channel");

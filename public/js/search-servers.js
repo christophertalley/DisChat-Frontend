@@ -1,4 +1,6 @@
-import { api } from './utils.js';
+// import { api } from './utils.js';
+
+// const api = document.querySelector('link[rel="api"]').href;
 
 const searchForm = document.querySelector(".join-server");
 const searchIcon = document.getElementById("join-button");

@@ -1,4 +1,5 @@
-import { api } from './utils.js';
+// import { api } from './utils.js';
+// const api = document.querySelector('link[rel="api"]').href;
 const deleteIcon = document.getElementById("delete-icon");
 
 deleteIcon.addEventListener('click', async (e) => {
