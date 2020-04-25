@@ -3,11 +3,11 @@ let serverName;
 let currentChannelId;
 let joinServerId;
 
-
+const userList = document.querySelector('#users-list');
 
 window.addEventListener("DOMContentLoaded", async (e) => {
     const serverList = document.querySelector("#server-list");
-    const userList = document.querySelector('#users-list');
+    // const userList = document.querySelector('#users-list');
     // const channelList = document.querySelector('.display-channels')
     const userId = localStorage.getItem("DischatUserId");
     const addServer = document.querySelector("#add-button");
@@ -281,7 +281,6 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         for (let i = 0; i < listServers.length; i++) {
             // console.log(listServers[i]);
             listServers[i].addEventListener('click', async (e) => {
-                console.log(e);
                 serverId = e.currentTarget.dataset.serverId;
                 serverName = e.currentTarget.dataset.serverName;
                 serverTitle.innerHTML = serverName;
