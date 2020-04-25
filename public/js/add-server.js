@@ -1,4 +1,5 @@
-import { api } from './utils.js';
+// import { api } from './utils.js';
+const api = document.querySelector('link[rel="api"]').href;
 const addServer = document.querySelector("#add-button");
 const serverList = document.querySelector("#server-list");
 const formServer = document.querySelector(".create-box");

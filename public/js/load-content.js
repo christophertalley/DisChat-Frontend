@@ -1,4 +1,5 @@
-import { api } from './utils.js';
+// import { api } from './utils.js';
+// const api = document.querySelector('link[rel="api"]').href;
 let serverId;
 let serverName;
 let currentChannelId;

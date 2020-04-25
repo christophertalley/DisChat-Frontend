@@ -1,4 +1,5 @@
-import { api } from './utils.js';
+// import { api } from './utils.js';
+// const api = document.querySelector('link[rel="api"]').href;
 const leaveButton = document.getElementById("leave-button");
 const leaveServer = document.querySelector(".confirm-leave-server");
 const leaveSubmit = document.querySelector(".server-leave-confirm");

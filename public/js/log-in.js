@@ -1,4 +1,6 @@
-import { api } from './utils.js';
+// import { api } from './utils.js';
+
+// const api = document.querySelector('link[rel="api"]').href;
 
 const handleErrors = async (err) => {
     if (err.status >= 400 && err.status < 600) {
