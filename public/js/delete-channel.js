@@ -26,9 +26,11 @@ deleteFormConfirmButton.addEventListener('click', async (e) => {
     }
 
     channelList.innerHTML = '';
-    userList.innerHTML = '';
+    // userList.innerHTML = '';
     deleteConfirmForm.classList.toggle("hidden");
     const response = await fetch(`${api}servers/${serverId}/channels`);
+    console.log(serverId);
+
     const parsedResponse = await response.json();
     const channels = parsedResponse.channels;
 

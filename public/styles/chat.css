@@ -450,3 +450,29 @@ display: inline-block;
 transition: all 0.3s ease 0s;
 /* position: relative; */
 }
+
+
+/* Button hover styles */
+#add-button {
+    opacity: 0.6;
+}
+
+#add-button:hover {
+    opacity: 1.0;
+}
+
+#join-button {
+    opacity: 0.6;
+}
+
+#join-button:hover {
+    opacity: 1.0;
+}
+
+#leave-button {
+    opacity: 0.6;
+}
+
+#leave-button:hover {
+    opacity: 1.0;
+}
