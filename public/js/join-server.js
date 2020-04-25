@@ -1,3 +1,4 @@
+import { api } from './utils';
 const joinButton = document.querySelector(".server-join-confirm");
 const cancelButton = document.querySelector(".server-join-deny");
 
@@ -19,7 +20,7 @@ joinButton.addEventListener('click', async (e) => {
     try {
         console.log(joinServerId);
         console.log(UserId);
-        const res = await fetch(`http://localhost:8080/userservers`, {
+        const res = await fetch(`${api}userservers`, {
             method: 'POST',
             body: JSON.stringify({ joinServerId, UserId }),
             headers: {

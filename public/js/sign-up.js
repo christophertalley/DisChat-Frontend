@@ -1,4 +1,5 @@
 // import handleErrors from ('/js/utils.js');
+import { api } from './utils';
 const handleErrors = async (err) => {
     if (err.status >= 400 && err.status < 600) {
         const errorJSON = await err.json();
@@ -42,7 +43,7 @@ signUpForm.addEventListener("submit", async (e) => {
     const body = { username, email, password };
 
     try {
-        const res = await fetch("http://localhost:8080/users", {
+        const res = await fetch(`${api}users`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {

@@ -1,3 +1,4 @@
+import { api } from './utils';
 const deleteIcon = document.getElementById("delete-icon");
 
 deleteIcon.addEventListener('click', async (e) => {
@@ -6,7 +7,7 @@ deleteIcon.addEventListener('click', async (e) => {
 
     socket.emit('leave channel', `${currentChannelId}`);
 
-    const res = await fetch(`http://localhost:8080/channels/${currentChannelId}`, {
+    const res = await fetch(`${api}channels/${currentChannelId}`, {
         method: 'DELETE'
     });
     if (!res.ok) {
@@ -16,7 +17,7 @@ deleteIcon.addEventListener('click', async (e) => {
     channelList.innerHTML = '';
     userList.innerHTML = '';
     messageBox.innerHTML = '';
-    const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
+    const response = await fetch(`${api}servers/${serverId}/channels`);
     const parsedResponse = await response.json();
     const channels = parsedResponse.channels;
     socket.emit('leave channel', `${currentChannelId}`);
@@ -36,7 +37,7 @@ deleteIcon.addEventListener('click', async (e) => {
             channelTitle.innerHTML = channels[0].channelName;
         })
 
-        const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+        const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
         const parsedMessageRes = await messageRes.json();
         const messages = parsedMessageRes.messages;
         messageBox.innerHTML = '';
@@ -72,7 +73,7 @@ deleteIcon.addEventListener('click', async (e) => {
             messageBox.innerHTML = '';
             channelTitle.innerHTML = currentChannelName;
             // fetch call with channelid to get messages
-            const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+            const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
             const parsedMessageRes = await messageRes.json();
 
             const messages = parsedMessageRes.messages;
@@ -85,7 +86,7 @@ deleteIcon.addEventListener('click', async (e) => {
         })
     })
 
-    const userResponse = await fetch(`http://localhost:8080/servers/${serverId}/users`);
+    const userResponse = await fetch(`${api}servers/${serverId}/users`);
     const parsedUserResponse = await userResponse.json();
     const userArray = parsedUserResponse.users;
     console.log(userArray);

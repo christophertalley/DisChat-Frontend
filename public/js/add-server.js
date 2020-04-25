@@ -1,3 +1,4 @@
+import { api } from './utils';
 const addServer = document.querySelector("#add-button");
 const serverList = document.querySelector("#server-list");
 const formServer = document.querySelector(".create-box");
@@ -36,7 +37,7 @@ formServer.addEventListener("submit", async (e) => {
 
     serverInput.value = '';
     try {
-        const res = await fetch(`http://localhost:8080/${userId}/servers`, {
+        const res = await fetch(`${api}${userId}/servers`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -69,7 +70,7 @@ formServer.addEventListener("submit", async (e) => {
         serverName = e.currentTarget.dataset.serverName;
         serverTitle.innerHTML = serverName;
         channelList.innerHTML = '';
-        const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
+        const response = await fetch(`${api}servers/${serverId}/channels`);
         const parsedResponse = await response.json();
         const channels = parsedResponse.channels;
         messageBox.innerHTML = '';
@@ -85,7 +86,7 @@ formServer.addEventListener("submit", async (e) => {
             channelList.appendChild(newChannel);
             channelTitle.innerHTML = channels[0].channelName;
         })
-        // const userResponse = await fetch(`http://localhost:8080/servers/${serverId}/users`);
+        // const userResponse = await fetch(`${api}servers/${serverId}/users`);
         // const parsedUserResponse = await userResponse.json();
         // const userArray = parsedUserResponse.users;
     })

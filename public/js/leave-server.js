@@ -1,3 +1,4 @@
+import { api } from './utils';
 const leaveButton = document.getElementById("leave-button");
 const leaveServer = document.querySelector(".confirm-leave-server");
 const leaveSubmit = document.querySelector(".server-leave-confirm");
@@ -16,7 +17,7 @@ leaveSubmit.addEventListener("click", async (e) => {
     const userId = localStorage.getItem("DischatUserId");
     const deleteServerId = serverId;
 
-    const res = await fetch(`http://localhost:8080/userservers/${userId}/${deleteServerId}`, {
+    const res = await fetch(`${api}userservers/${userId}/${deleteServerId}`, {
         method: 'DELETE'
     });
     if (!res.ok) {
