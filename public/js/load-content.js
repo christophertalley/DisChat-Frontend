@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     if (messages[i].UserId === null) {
                         messageBox.innerHTML += `<p class="messages">DisChat Welcome Bot: <br/> ${messages[i].messageContent}</p>`;
                     } else {
-                        messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p><br/><br/>`;
+                        messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
                     }
                 }
                 // messages.forEach(message => {
