@@ -121,28 +121,30 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
 
             // Adds click event listener to new server
-            newServer.addEventListener('click', async (e) => {
-                serverId = e.currentTarget.dataset.serverId;
-                serverName = e.currentTarget.dataset.serverName;
-                serverTitle.innerHTML = serverName;
-                channelList.innerHTML = '';
-                const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
-                const parsedResponse = await response.json();
-                const channels = parsedResponse.channels;
-                messageBox.innerHTML = '';
-                if (channels.length === 0) {
-                    channelTitle.innerHTML = "";
-                }
-                channels.forEach(channel => {
-                    let newChannel = document.createElement("li");
-                    newChannel.dataset.channelId = channel.id;
-                    newServer.dataset.channelName = channel.channelName;
-                    newChannel.classList.add("channels-li");
-                    newChannel.innerHTML = `<p class="select-channel"> # ${channel.channelName}</p>`;
-                    channelList.appendChild(newChannel);
-                    channelTitle.innerHTML = channels[0].channelName;
-                })
-            })
+            // newServer.addEventListener('click', async (e) => {
+            //     console.log(e);
+            //     serverId = e.currentTarget.dataset.serverId;
+            //     serverName = e.currentTarget.dataset.serverName;
+            //     serverTitle.innerHTML = serverName;
+            //     channelList.innerHTML = '';
+            //     const response = await fetch(`http://localhost:8080/servers/${serverId}/channels`);
+            //     const parsedResponse = await response.json();
+            //     const channels = parsedResponse.channels;
+            //     messageBox.innerHTML = '';
+            //     if (channels.length === 0) {
+            //         channelTitle.innerHTML = "";
+            //     }
+            //     console.log(channels);
+            //     channels.forEach(channel => {
+            //         let newChannel = document.createElement("li");
+            //         newChannel.dataset.channelId = channel.id;
+            //         newServer.dataset.channelName = channel.channelName;
+            //         newChannel.classList.add("channels-li");
+            //         newChannel.innerHTML = `<p class="select-channel"> # ${channel.channelName}</p>`;
+            //         channelList.appendChild(newChannel);
+            //         channelTitle.innerHTML = channels[0].channelName;
+            //     })
+            // })
 
 
             // const channelTitle = document.getElementById('channel-name');
@@ -157,20 +159,21 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             // Don't know what this is for:
             textInputBox.classList.add("new-message-form");
 
-            firstChannel.addEventListener('click', async (e) => {
-                socket.emit('leave channel', `${currentChannelId}`);
-                currentChannelId = e.currentTarget.dataset.channelId;
-                socket.emit('join channel', `${currentChannelId}`);
-                const currentChannelName = e.currentTarget.dataset.channelName;
-                channelTitle.innerHTML = currentChannelName;
-                messageBox.innerHTML = '';
-                const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
-                const parsedMessageRes = await messageRes.json();
-                const messages = parsedMessageRes.messages;
-                messages.forEach(message => {
-                    messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
-                });
-            })
+            // firstChannel.addEventListener('click', async (e) => {
+            //     console.log(e);
+            //     socket.emit('leave channel', `${currentChannelId}`);
+            //     currentChannelId = e.currentTarget.dataset.channelId;
+            //     socket.emit('join channel', `${currentChannelId}`);
+            //     const currentChannelName = e.currentTarget.dataset.channelName;
+            //     channelTitle.innerHTML = currentChannelName;
+            //     messageBox.innerHTML = '';
+            //     const messageRes = await fetch(`http://localhost:8080/channels/${currentChannelId}/messages`);
+            //     const parsedMessageRes = await messageRes.json();
+            //     const messages = parsedMessageRes.messages;
+            //     messages.forEach(message => {
+            //         messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
+            //     });
+            // })
 
 
             try {
@@ -233,6 +236,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         // console.log(displayedChannels);
         displayedChannels.forEach(channel => {
             channel.addEventListener('click', async (e) => {
+                console.log(e);
                 socket.emit('leave channel', `${currentChannelId}`);
                 currentChannelId = e.currentTarget.dataset.channelId;
                 socket.emit('join channel', `${currentChannelId}`)
@@ -277,6 +281,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         for (let i = 0; i < listServers.length; i++) {
             // console.log(listServers[i]);
             listServers[i].addEventListener('click', async (e) => {
+                console.log(e);
                 serverId = e.currentTarget.dataset.serverId;
                 serverName = e.currentTarget.dataset.serverName;
                 serverTitle.innerHTML = serverName;
