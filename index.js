@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
 
         console.log(username + ' joined');
 
-        io.in(`${joinServerId}`).emit('user joins server', username);
+        socket.in(`${joinServerId}`).broadcast.emit('user joins server', username);
     })
 
 });

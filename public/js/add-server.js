@@ -7,7 +7,7 @@ const buttonNewServer = document.querySelector(".submit");
 const serverInput = document.getElementById('newServer');
 const serverTitle = document.querySelector('.server-name');
 const textInputBox = document.querySelector("#new-message-form");
-let images = ["/images/sign-in-background.png", "/images/server-wallpaper.jgp"]
+let images = ["/images/sign-in-background.png", "/images/server-wallpaper2.png"]
 
 let num = Math.floor(Math.random() * Math.floor(2));
 
@@ -26,7 +26,7 @@ formServer.addEventListener("submit", async (e) => {
     let newServer = document.createElement("li");
     newServer.classList.add("servers-li");
 
-    newServer.innerHTML = `<img src="${images[num]}" class="server-display" alt="Testing">`;
+    newServer.innerHTML = `<img src="${images[1]}" class="server-display" alt="Testing">`;
     serverList.append(newServer);
     formServer.classList.add("hidden");
     textInputBox.classList.add("hidden");
