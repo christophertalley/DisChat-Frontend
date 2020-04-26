@@ -39,6 +39,11 @@
             button(class="delete-channel-confirm") Confirm
             button(class="delete-channel-deny") Cancel
 
+        form.hidden.confirm-logout
+            .leave-server-label Are you sure you want to logout?
+            button(class="logout-confirm") Confirm
+            button(class="logout-cancel") Cancel
+
         <div class="servers">
             <div class="user-servers">
                 <ul id="server-list-home">
@@ -76,7 +81,9 @@
                 </ul>
             </div>
             <div class="user">
-                <p class="username"></p>
+                div.user-container
+                    <p class="username"></p>
+                    img#logout-icon(src="/images/logout-icon.png")
             </div>
         </div>
         <div class="chat">
@@ -112,5 +119,6 @@ script(src="/js/join-server.js")
 script(src="/js/search-servers.js")
 script(src="/js/leave-server.js")
 script(src="/js/delete-channel.js")
+script(src="/js/logout-user.js")
 //- script(src="/js/load-messages.js")
 </html>
