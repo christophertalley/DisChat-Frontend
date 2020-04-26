@@ -151,6 +151,20 @@ border-radius: 100px;
     transition: all 0.3s ease 0s;
 }
 
+#logout-icon {
+    position: relative;
+    box-sizing: content-box;
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin: 0 auto;
+    /* padding-right: 10px; */
+    /* padding-top: 10px; */
+    cursor: pointer;
+    opacity: 0.4;
+}
+
 .users-column{
     display: flex;
     color: white;
@@ -217,9 +231,27 @@ border-radius: 100px;
 .user{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     border-top: 1px solid black;
     height: 60px;
+    box-sizing: border-box;
 }
+
+.user-container {
+    height: 40px;
+    background-color: #555252;
+    display: flex;
+
+    /* justify-content: flex-start;
+    align-content: flex-start; */
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 2px;
+    height: 70%;
+    width: 80%;
+}
+
 .username{
     color: white;
     padding-left: 10px;
@@ -284,6 +316,20 @@ border-radius: 100px;
         padding: 8px;
 
 }
+.confirm-logout {
+    display: flex;
+        width: 450px;
+        background: #555252;
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        border-radius: 25px;
+        flex-direction: column;
+        padding: 8px;
+}
 
 .confirm-leave-server {
     display: flex;
@@ -334,6 +380,7 @@ border-radius: 100px;
 }
 
 .message-input {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     height: 60px;
@@ -358,6 +405,11 @@ border-radius: 100px;
     color: white;
     padding-left: 10px;
 }
+/* .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
 
 .home-li {
     list-style-type: none;
