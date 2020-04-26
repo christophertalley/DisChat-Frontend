@@ -7,10 +7,15 @@ const buttonNewServer = document.querySelector(".submit");
 const serverInput = document.getElementById('newServer');
 const serverTitle = document.querySelector('.server-name');
 const textInputBox = document.querySelector("#new-message-form");
+let images = ["/images/sign-in-background.png", "/images/server-wallpaper.jgp"]
+
+let num = Math.floor(Math.random() * Math.floor(2));
 
 addServer.addEventListener("click", async (e) => {
     e.preventDefault();
     formServer.classList.toggle("hidden");
+    serverInput.focus();
+    serverInput.value = "";
 })
 
 
@@ -21,7 +26,7 @@ formServer.addEventListener("submit", async (e) => {
     let newServer = document.createElement("li");
     newServer.classList.add("servers-li");
 
-    newServer.innerHTML = '<img src="/images/sign-in-background.png" class="server-display">';
+    newServer.innerHTML = `<img src="${images[num]}" class="server-display" alt="Testing">`;
     serverList.append(newServer);
     formServer.classList.add("hidden");
     textInputBox.classList.add("hidden");
@@ -83,12 +88,15 @@ formServer.addEventListener("submit", async (e) => {
 
     newServer.addEventListener('click', async (e) => {
 
+        socket.emit('leave server', `${serverId}`)
         serverId = e.currentTarget.dataset.serverId;
         serverName = e.currentTarget.dataset.serverName;
         serverTitle.innerHTML = serverName;
         channelList.innerHTML = '';
         userList.innerHTML = '';
         messageBox.innerHTML = '';
+
+        socket.emit('join server', `${serverId}`)
 
         const response = await fetch(`${api}servers/${serverId}/channels`);
         const parsedResponse = await response.json();

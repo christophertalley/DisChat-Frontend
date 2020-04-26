@@ -1,9 +1,19 @@
-// import { api } from './utils.js';
-// const api = document.querySelector('link[rel="api"]').href;
+
 const joinButton = document.querySelector(".server-join-confirm");
 const cancelButton = document.querySelector(".server-join-deny");
 const joinServerInput = document.getElementById('newJoinServer');
 const joinServerForm = document.querySelector(".confirm-join-server");
+
+
+socket.on('user joins server', (username) => {
+    let newUser = document.createElement('li');
+    newUser.classList.add('users-li');
+    console.log(username);
+    newUser.innerHTML = `<p class="select-user"> # ${username}</p>`;
+
+    userList.appendChild(newUser);
+})
+
 
 cancelButton.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -12,20 +22,21 @@ cancelButton.addEventListener("click", async (e) => {
 
 joinButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    joinServerInput.value = '';
+    joinServerInput.value = "";
     joinServerForm.classList.toggle("hidden");
 
     const UserId = localStorage.getItem("DischatUserId");
+    const username = localStorage.getItem("DischatUserName");
+
+    socket.emit('user joins server', { username, joinServerId });
 
     let newServer = document.createElement("li");
     newServer.classList.add("servers-li");
     newServer.innerHTML = '<img src="/images/sign-in-background.png" class="server-display">';
     serverList.append(newServer);
-    // textInputBox.classList.add("hidden");
-    // textInputBox.classList.remove("new-message-form");
 
 
-    // Where is it getting joinServerId from?
+
     const res = await fetch(`${api}userservers`, {
         method: 'POST',
         body: JSON.stringify({ joinServerId, UserId }),
@@ -52,9 +63,9 @@ joinButton.addEventListener('click', async (e) => {
     newServer.dataset.serverName = server.serverName;
     serverTitle.innerHTML = server.serverName;
     socket.emit('leave channel', `${currentChannelId}`)
-
+    socket.emit('leave server', `${serverId}`)
     serverId = server.id;
-
+    socket.emit('join server', `${serverId}`)
     server.Channels.forEach(channel => {
         let newChannel = document.createElement("li");
         currentChannelId = channel.id;
@@ -80,9 +91,6 @@ joinButton.addEventListener('click', async (e) => {
                 messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
             }
         }
-        // messages.forEach(message => {
-        //     messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
-        // });
     }
 
     let displayedChannels = document.querySelectorAll('.channels-li');

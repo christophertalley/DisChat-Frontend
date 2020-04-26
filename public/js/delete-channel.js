@@ -15,9 +15,6 @@ deleteFormConfirmButton.addEventListener('click', async (e) => {
     socket.emit('leave channel', `${currentChannelId}`);
 
 
-
-
-
     const res = await fetch(`${api}channels/${currentChannelId}`, {
         method: 'DELETE'
     });

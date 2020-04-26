@@ -1,6 +1,7 @@
 body {
     overflow: hidden;
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .message::-webkit-scrollbar {
@@ -10,6 +11,10 @@ body {
 .message::-webkit-scrollbar-thumb {
     background: #555252;
     border-radius: 10px;
+  }
+
+  p{
+      font-family: 'Times New Roman', Times, serif;
   }
 
 
@@ -31,7 +36,6 @@ div {
     padding: 0;
     cursor: pointer;
 }
-
 
 .dischat{
     background-color: #202225;
@@ -101,16 +105,34 @@ ul {
 .servers-li {
     list-style-type: none;
     padding-top: 10px;
+    display:flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
     /* opacity: 0.6; */
 }
 .servers-li>img:hover {
     opacity: 1;
     transition: all 0.3s ease 0s;
-    -webkit-box-shadow: 2px 2px 2px 2px rgba(222,222,222,1);
--moz-box-shadow: 2px 2px 2px 2px rgba(222,222,222,1);
-box-shadow: 2px 2px 2px 2px rgba(222,222,222,1);
-border-radius: 100px;
+    border-radius: 10px;
 }
+
+.server-names{
+    position: absolute;
+    left: 60px;
+    top: -7px;
+    color: white;
+    background-color: black;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1;
+}
+
+
+
+
+
 .server{
     display: flex;
     flex-direction:row;
@@ -240,7 +262,6 @@ border-radius: 100px;
 
 .user-container {
     height: 40px;
-    background-color: #555252;
     display: flex;
 
     /* justify-content: flex-start;
@@ -551,4 +572,8 @@ opacity: 0.7;
 #leave-button:hover {
     opacity: 1.0;
     transition: all 0.3s ease 0s;
+}
+
+#logo {
+    cursor: auto;
 }
