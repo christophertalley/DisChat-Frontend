@@ -332,7 +332,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
     for (let i = 0; i < listServers.length; i++) {
         listServers[i].addEventListener('mouseenter', async (e) => {
-            console.log("in");
+            // console.log("in");
             const serverNameDisplay = document.querySelector(`.NameDisplay${listServers[i].dataset.serverId}`);
             // console.log(serverNameDisplay);
             serverNameDisplay.classList.remove("hidden");
@@ -341,7 +341,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
     for (let i = 0; i < listServers.length; i++) {
         listServers[i].addEventListener('mouseleave', async (e) => {
-            console.log("out");
+            // console.log("out");
             const serverNameDisplay = document.querySelector(`.NameDisplay${listServers[i].dataset.serverId}`);
             // console.log(serverNameDisplay);
             serverNameDisplay.classList.add("hidden");
