@@ -32,29 +32,30 @@
             <input class="submit form-button-cool" type="submit" role="button" name="join-server" value="Join Server"><br>
 
         form.hidden.confirm-join-server
-         .form-container
-            .join-server-label Do you wish to join this server?
-            img#confirm-join-server.close-out-form(src="/images/delete-icon.png")
+            .join-server-label
+              img#confirm-join-server.weird-form(src="/images/delete-icon.png")
+            p.weird-form-label Do you wish to join this server?
             button(class="server-join-confirm form-button-cool" ) Confirm
             button(class="server-join-deny form-button-deny" ) Cancel
 
         form.hidden.confirm-leave-server
-            .leave-server-label Do you wish to leave this server?
-            img#confirm-leave-server.close-out-form(src="/images/delete-icon.png")
+            .leave-server-label
+               img#confirm-leave-server.weird-form(src="/images/delete-icon.png")
+            p.weird-form-label Do you wish to leave this server?
             button(class="server-leave-confirm form-button-cool") Confirm
             button(class="server-leave-deny form-button-deny") Cancel
 
         form.hidden.confirm-delete-channel
-            .form-container
-              .leave-server-label Do you wish to delete this channel?
-                img#confirm-delete-channel.close-out-form(src="/images/delete-icon.png")
+            .leave-server-label
+              img#confirm-delete-channel.weird-form(src="/images/delete-icon.png")
+            p.weird-form-label Do you wish to delete this channel?
             button(class="delete-channel-confirm form-button-cool") Confirm
             button(class="delete-channel-deny form-button-deny") Cancel
 
         form.hidden.confirm-logout
-            .form-container
-              .leave-server-label Are you sure you want to logout?
-                img#confirm-logout.close-out-form(src="/images/delete-icon.png")
+            .leave-server-label
+                img#confirm-logout.weird-form(src="/images/delete-icon.png")
+            p.weird-form-label Are you sure you want to logout?
             button(class="logout-confirm form-button-cool") Confirm
             button(class="logout-cancel form-button-deny") Cancel
 
