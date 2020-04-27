@@ -1,6 +1,10 @@
 body {
     overflow: hidden;
     margin: 0;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    /* font-family: "Segoe UI", Georgia, Serif;
+    font: bold 16px/30px Georgia, serif; */
+    font-family: 'Hind', sans-serif;
 }
 
 .message::-webkit-scrollbar {
@@ -10,6 +14,13 @@ body {
 .message::-webkit-scrollbar-thumb {
     background: #555252;
     border-radius: 10px;
+  }
+
+  p{
+      /* font-family: 'Times New Roman', Times, serif; */
+      /* font-family: "Segoe UI", Georgia, Serif;
+      font: bolder 16px/30px Georgia, serif; */
+      font-family: 'Hind', sans-serif;
   }
 
 
@@ -31,7 +42,6 @@ div {
     padding: 0;
     cursor: pointer;
 }
-
 
 .dischat{
     background-color: #202225;
@@ -101,16 +111,36 @@ ul {
 .servers-li {
     list-style-type: none;
     padding-top: 10px;
+    display:flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
     /* opacity: 0.6; */
 }
 .servers-li>img:hover {
     opacity: 1;
     transition: all 0.3s ease 0s;
-    -webkit-box-shadow: 2px 2px 2px 2px rgba(222,222,222,1);
--moz-box-shadow: 2px 2px 2px 2px rgba(222,222,222,1);
-box-shadow: 2px 2px 2px 2px rgba(222,222,222,1);
-border-radius: 100px;
+    border-radius: 10px;
 }
+
+.server-names{
+    position: absolute;
+    left: 60px;
+    top: -2px;
+    color: white;
+    background-color: black;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1;
+    text-align: center;
+    width: max-content;
+}
+
+
+
+
+
 .server{
     display: flex;
     flex-direction:row;
@@ -240,7 +270,6 @@ border-radius: 100px;
 
 .user-container {
     height: 40px;
-    background-color: #555252;
     display: flex;
 
     /* justify-content: flex-start;
@@ -508,11 +537,12 @@ border-radius: 100px;
 
 
 .message-submit {
+    box-sizing: border-box;
 border: none;
 background: #404040;
-color: #ffffff !important;
+color: grey;
 font-weight: 100;
-padding: 20px;
+/* padding: 20px; */
 text-transform: uppercase;
 border-radius: 6px;
 display: inline-block;
@@ -551,4 +581,8 @@ opacity: 0.7;
 #leave-button:hover {
     opacity: 1.0;
     transition: all 0.3s ease 0s;
+}
+
+#logo {
+    cursor: auto;
 }

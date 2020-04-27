@@ -7,6 +7,8 @@ const searchIcon = document.getElementById("join-button");
 
 searchIcon.addEventListener("click", (e) => {
     searchForm.classList.toggle('hidden');
+    joinServerInput.value = "";
+    joinServerInput.focus();
 })
 
 

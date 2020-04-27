@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
     link(rel="api" href=`${api}`)
     <title>DisChat</title>
 </head>
@@ -48,7 +49,7 @@
             <div class="user-servers">
                 <ul id="server-list-home">
                     <li class="home-li">
-                          <img src="/images/pngwave.png" class="server-display" alt="NO IMAGE">
+                          <img src="/images/pngwave.png" id='logo' class="server-display" alt="NO IMAGE">
                     </li>
                 <ul id="server-list" >
                     //- <li class="home-li">
@@ -120,5 +121,6 @@ script(src="/js/search-servers.js")
 script(src="/js/leave-server.js")
 script(src="/js/delete-channel.js")
 script(src="/js/logout-user.js")
+script(src="/js/server-text.js")
 //- script(src="/js/load-messages.js")
 </html>

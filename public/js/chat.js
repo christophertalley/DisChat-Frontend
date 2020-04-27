@@ -20,12 +20,13 @@ sendButton.addEventListener('click', async e => {
         ChatId: currentChannelId,
         username: user
     })
-
+    let chat = chatInput.value;
+    chatInput.value = '';
     try {
         const res = await fetch(`${api}channels/${currentChannelId}/messages`, {
             method: 'POST',
             body: JSON.stringify({
-                messageContent: chatInput.value,
+                messageContent: chat,
                 UserId: userId,
                 ChatId: currentChannelId
             }),
@@ -41,7 +42,6 @@ sendButton.addEventListener('click', async e => {
         console.error(e);
     }
 
-    chatInput.value = '';
 })
 
 // Receives messages from front end server

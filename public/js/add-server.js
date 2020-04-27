@@ -8,10 +8,35 @@ const serverInput = document.getElementById('newServer');
 const serverTitle = document.querySelector('.server-name');
 const textInputBox = document.querySelector("#new-message-form");
 
+// let num = Math.floor(Math.random() * Math.floor(images));
+
 addServer.addEventListener("click", async (e) => {
     e.preventDefault();
     formServer.classList.toggle("hidden");
+    serverInput.focus();
+    serverInput.value = "";
 })
+const getRandomImg = () => {
+    let images = [
+        "/images/random-img-1.png",
+        "/images/random-img-2.png",
+        "/images/random-img-3.png",
+        "/images/random-img-4.png",
+        "/images/random-img-4.png",
+        "/images/random-img-5.png",
+        "/images/random-img-6.png",
+        "/images/random-img-7.png",
+        "/images/random-img-8.png",
+        "/images/random-img-9.png",
+        "/images/random-img-10.png",
+        "/images/random-img-11.png",
+        "/images/random-img-12.png",
+        "/images/random-img-13.png"
+    ];
+
+    let randomNum = Math.floor(Math.random() * Math.floor(images.length))
+    return images[randomNum];
+}
 
 
 formServer.addEventListener("submit", async (e) => {
@@ -20,13 +45,15 @@ formServer.addEventListener("submit", async (e) => {
     const channelTitle = document.getElementById('channel-name');
     let newServer = document.createElement("li");
     newServer.classList.add("servers-li");
-
-    newServer.innerHTML = '<img src="/images/sign-in-background.png" class="server-display">';
+    let randomImg = getRandomImg();
+    // console.log(randomImg);
+    newServer.innerHTML = `<img src="${randomImg}" class="server-display" >`;
     serverList.append(newServer);
     formServer.classList.add("hidden");
     textInputBox.classList.add("hidden");
     textInputBox.classList.remove("new-message-form");
 
+    deleteIcon.classList.add('hidden');
 
     const formData = new FormData(formServer);
 
@@ -61,8 +88,10 @@ formServer.addEventListener("submit", async (e) => {
         newServer.dataset.serverName = server.serverName;
         serverTitle.innerHTML = server.serverName;
         socket.emit('leave channel', `${currentChannelId}`)
-
+        socket.emit('leave server', `${serverId}`)
         serverId = server.id;
+
+        socket.emit('join server', `${serverId}`);
 
         const userResponse = await fetch(`${api}servers/${serverId}/users`);
         const parsedUserResponse = await userResponse.json();
@@ -71,6 +100,7 @@ formServer.addEventListener("submit", async (e) => {
 
         userArray.forEach(user => {
             let newUser = document.createElement('li');
+            newUser.dataset.userId = user.id;
             newUser.classList.add('users-li');
             newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
             userList.appendChild(newUser);
@@ -83,12 +113,16 @@ formServer.addEventListener("submit", async (e) => {
 
     newServer.addEventListener('click', async (e) => {
 
+        socket.emit('leave server', `${serverId}`)
         serverId = e.currentTarget.dataset.serverId;
         serverName = e.currentTarget.dataset.serverName;
         serverTitle.innerHTML = serverName;
         channelList.innerHTML = '';
         userList.innerHTML = '';
         messageBox.innerHTML = '';
+
+
+        socket.emit('join server', `${serverId}`);
 
         const response = await fetch(`${api}servers/${serverId}/channels`);
         const parsedResponse = await response.json();
@@ -109,6 +143,13 @@ formServer.addEventListener("submit", async (e) => {
                 channelList.append(newChannel);
                 channelTitle.innerHTML = channels[0].channelName;
             })
+
+            const channelListOnLoad = document.querySelectorAll('.channels-li');
+            if (channelListOnLoad.length === 0) {
+                deleteIcon.classList.add('hidden');
+            } else {
+                deleteIcon.classList.remove('hidden');
+            }
 
             const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
             const parsedMessageRes = await messageRes.json();
@@ -146,7 +187,8 @@ formServer.addEventListener("submit", async (e) => {
                 currentChannelId = e.currentTarget.dataset.channelId;
                 socket.emit('join channel', `${currentChannelId}`)
                 const currentChannelName = e.currentTarget.dataset.channelName;
-
+                textInputBox.classList.add("hidden");
+                textInputBox.classList.remove("new-message-form");
                 messageBox.innerHTML = '';
                 channelTitle.innerHTML = currentChannelName;
                 // fetch call with channelid to get messages
@@ -162,9 +204,6 @@ formServer.addEventListener("submit", async (e) => {
                     }
 
                 }
-                // messages.forEach(message => {
-                //     messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
-                // });
             })
         })
 
@@ -176,7 +215,7 @@ formServer.addEventListener("submit", async (e) => {
         userArray.forEach(user => {
             let newUser = document.createElement('li');
             newUser.classList.add('users-li');
-
+            newUser.dataset.userId = user.id;
             // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
             newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
             // newUserList += newUser;
