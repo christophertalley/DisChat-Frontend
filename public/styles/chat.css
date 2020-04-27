@@ -1,7 +1,10 @@
 body {
     overflow: hidden;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    /* font-family: "Segoe UI", Georgia, Serif;
+    font: bold 16px/30px Georgia, serif; */
+    font-family: 'Hind', sans-serif;
 }
 
 .message::-webkit-scrollbar {
@@ -14,7 +17,10 @@ body {
   }
 
   p{
-      font-family: 'Times New Roman', Times, serif;
+      /* font-family: 'Times New Roman', Times, serif; */
+      /* font-family: "Segoe UI", Georgia, Serif;
+      font: bolder 16px/30px Georgia, serif; */
+      font-family: 'Hind', sans-serif;
   }
 
 
@@ -531,11 +537,12 @@ ul {
 
 
 .message-submit {
+    box-sizing: border-box;
 border: none;
 background: #404040;
-color: #ffffff !important;
+color: grey;
 font-weight: 100;
-padding: 20px;
+/* padding: 20px; */
 text-transform: uppercase;
 border-radius: 6px;
 display: inline-block;

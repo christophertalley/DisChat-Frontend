@@ -12,8 +12,7 @@ socket.on('add channel', (addedChannel) => {
     channel.classList.add("channels-li");
     channel.innerHTML = `<p class="select-channel"> # ${addedChannel.channelName}</p>`;
     channelList.prepend(channel);
-    textInputBox.classList.remove("hidden");
-    textInputBox.classList.add("new-message-form");
+
 
     channelInput.value = '';
 
@@ -28,6 +27,11 @@ socket.on('add channel', (addedChannel) => {
         const currentChannelName = e.currentTarget.dataset.channelName;
         channelTitle.innerHTML = currentChannelName;
         messageBox.innerHTML = '';
+
+        deleteIcon.classList.remove('hidden');
+
+        textInputBox.classList.remove("hidden");
+        textInputBox.classList.add("new-message-form");
         const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
         const parsedMessageRes = await messageRes.json();
         const messages = parsedMessageRes.messages;

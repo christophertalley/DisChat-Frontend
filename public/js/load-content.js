@@ -41,7 +41,14 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 channelList.prepend(newChannel);
                 channelTitle.innerHTML = initialServer.Channels[initialServer.Channels.length - 1].channelName;
             })
-
+            const channelListOnLoad = document.querySelectorAll('.channels-li')
+            if (channelListOnLoad.length === 0) {
+                deleteIcon.classList.add('hidden');
+                textInputBox.classList.add("hidden");
+                textInputBox.classList.remove("new-message-form");
+            } else {
+                deleteIcon.classList.remove('hidden');
+            }
             if (initialServer.Channels.length > 0) {
                 socket.emit('join channel', `${initialServer.Channels[initialServer.Channels.length - 1].id}`);
                 const messageRes = await fetch(`${api}channels/${currentChannelId}/messages`);
@@ -57,22 +64,23 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     }
                 }
             }
-
-            initialServer.Users.forEach(user => {
-                let newUser = document.createElement('li');
-                newUser.classList.add('users-li');
-                newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
-                userList.appendChild(newUser);
-            });
+            // initialServer.Users.forEach(user => {
+            //     let newUser = document.createElement('li');
+            //     newUser.dataset.userId = user.id;
+            //     newUser.classList.add('users-li');
+            //     newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+            //     userList.appendChild(newUser);
+            // });
         } else {
-            // This else block loads a server called Your First Server and
+            // This else block loads a server called (username)'s First Server and
             // a channel called Your First Channel. The channel displays a message
             // explaining how the app works.
 
             const channelTitle = document.getElementById('channel-name');
 
             let newServer = document.createElement("li");
-            newServer.classList.add("servers-li");
+            let randomImg = getRandomImg();
+            newServer.innerHTML = `<img src="${randomImg}" class="server-display servers-li" >`;
             const userId = localStorage.getItem("DischatUserId");
             const userName = localStorage.getItem("DischatUserName");
 
@@ -108,9 +116,10 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 newServer.dataset.serverId = server.id;
                 newServer.dataset.serverName = server.serverName;
                 serverTitle.innerHTML = server.serverName;
+                let randomImg = getRandomImg();
 
                 serverId = server.id;
-                newServer.innerHTML = `<h3 class="NameDisplay${server.id} server-names hidden"> ${userName}'s First Server</h3> <img src="/images/sign-in-background.png" class="server-display">`;
+                // newServer.innerHTML = `<h3 class="NameDisplay${server.id} server-names hidden"> ${userName}'s First Server</h3> <img src="/images/${randomImg}" class="server-display">`;
 
                 socket.emit('join server', `${serverId}`)
             } catch (e) {
@@ -187,11 +196,12 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
         displayedChannels.forEach(channel => {
             channel.addEventListener('click', async (e) => {
-                console.log(e);
+
                 socket.emit('leave channel', `${currentChannelId}`);
                 currentChannelId = e.currentTarget.dataset.channelId;
                 socket.emit('join channel', `${currentChannelId}`)
-
+                textInputBox.classList.remove("hidden");
+                textInputBox.classList.add("new-message-form");
                 const currentChannelName = e.currentTarget.dataset.channelName;
                 channelTitle.innerHTML = currentChannelName;
                 // fetch call with channelid to get messages
@@ -215,9 +225,23 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             newServer.dataset.serverId = server.id;
             newServer.dataset.serverName = server.serverName;
             newServer.classList.add("servers-li");
-            newServer.innerHTML = `<h3 class="NameDisplay${server.id} server-names hidden"> ${server.serverName}</h3> <img src="/images/sign-in-background.png" class="server-display">`;
+            let randomImg = getRandomImg();
+            newServer.innerHTML = `<h3 class="NameDisplay${server.id} server-names hidden"> ${server.serverName}</h3> <img src="${randomImg}" class="server-display">`;
             serverList.append(newServer);
         });
+
+        const userResponse = await fetch(`${api}servers/${serverId}/users`);
+        const parsedUserResponse = await userResponse.json();
+        const userArray = parsedUserResponse.users;
+
+        userArray.forEach(user => {
+            let newUser = document.createElement('li');
+            newUser.classList.add('users-li');
+            newUser.dataset.userId = user.id;
+            newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+
+            userList.appendChild(newUser);
+        })
 
         const listServers = document.querySelectorAll(".servers-li");
 
@@ -279,7 +303,11 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
 
                 displayedChannels = document.querySelectorAll('.channels-li');
-
+                if (displayedChannels.length === 0) {
+                    deleteIcon.classList.add('hidden');
+                } else {
+                    deleteIcon.classList.remove('hidden');
+                }
                 displayedChannels.forEach(channel => {
                     channel.addEventListener('click', async (e) => {
 
@@ -287,7 +315,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                         currentChannelId = e.currentTarget.dataset.channelId;
                         socket.emit('join channel', `${currentChannelId}`)
                         const currentChannelName = e.currentTarget.dataset.channelName;
-
+                        textInputBox.classList.remove("hidden");
+                        textInputBox.classList.add("new-message-form");
                         messageBox.innerHTML = '';
                         channelTitle.innerHTML = currentChannelName;
                         // fetch call with channelid to get messages
@@ -314,7 +343,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 userArray.forEach(user => {
                     let newUser = document.createElement('li');
                     newUser.classList.add('users-li');
-
+                    newUser.dataset.userId = user.id;
                     newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
 
                     userList.appendChild(newUser);
