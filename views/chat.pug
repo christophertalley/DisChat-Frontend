@@ -11,39 +11,53 @@
 <body>
     <div class="dischat">
         form.hidden.create-box
-            label(for="serverName") Add a Server:
-            input(id='newServer' type="text" name="serverName")
-            <input class="submit" type="submit" role="button" name="add-server" value="Add Server"><br>
+            .form-container
+              label(for="serverName") Add a Server:
+                img#create-box.close-out-form(src="/images/delete-icon.png")
+            input.form-input-cool(id='newServer' type="text" name="serverName" placeholder="What do you want to call your server? Be creative!" autocomplete="off")
+            <input class="submit form-button-cool" type="submit" role="button" name="add-server" value="Add Server"><br>
 
         form.hidden.create-channel
-            label(for="channelName") Add a Channel:
-            input(id='newChannel' type="text" name="channelName")
-            <input class="submit" type="submit" role="button" name="add-channel" value="Add Channel"><br>
+            .form-container
+              label(for="channelName") Add a Channel:
+                img#create-channel.close-out-form(src="/images/delete-icon.png")
+            input.form-input-cool(id='newChannel' type="text" name="channelName" autocomplete="off")
+            <input class="submit form-button-cool" type="submit" role="button" name="add-channel" value="Add Channel"><br>
 
         form.hidden.join-server
-            label(for="joinServerName") Join Server:
-            input(id='newJoinServer' type="text" name="joinServerName" placeholder="Please enter the name of the server you'd like to join.")
-            <input class="submit" type="submit" role="button" name="join-server" value="Join Server"><br>
+            .form-container
+              label(for="joinServerName") Join Server:
+                img#join-server.close-out-form(src="/images/delete-icon.png")
+            input.form-input-cool(id='newJoinServer' type="text" name="joinServerName" placeholder="Please enter the name of the server you'd like to join." autocomplete="off")
+            <input class="submit form-button-cool" type="submit" role="button" name="join-server" value="Join Server"><br>
 
         form.hidden.confirm-join-server
-            .join-server-label Do you wish to join this server?
-            button(class="server-join-confirm" ) Confirm
-            button(class="server-join-deny" ) Cancel
+            .join-server-label
+              img#confirm-join-server.weird-form(src="/images/delete-icon.png")
+            p.weird-form-label Do you wish to join this server?
+            button(class="server-join-confirm form-button-cool" ) Confirm
+            button(class="server-join-deny form-button-deny" ) Cancel
 
         form.hidden.confirm-leave-server
-            .leave-server-label Do you wish to leave this server?
-            button(class="server-leave-confirm") Confirm
-            button(class="server-leave-deny") Cancel
+            .leave-server-label
+               img#confirm-leave-server.weird-form(src="/images/delete-icon.png")
+            p.weird-form-label Do you wish to leave this server?
+            button(class="server-leave-confirm form-button-cool") Confirm
+            button(class="server-leave-deny form-button-deny") Cancel
 
         form.hidden.confirm-delete-channel
-            .leave-server-label Do you wish to delete this channel?
-            button(class="delete-channel-confirm") Confirm
-            button(class="delete-channel-deny") Cancel
+            .leave-server-label
+              img#confirm-delete-channel.weird-form(src="/images/delete-icon.png")
+            p.weird-form-label Do you wish to delete this channel?
+            button(class="delete-channel-confirm form-button-cool") Confirm
+            button(class="delete-channel-deny form-button-deny") Cancel
 
         form.hidden.confirm-logout
-            .leave-server-label Are you sure you want to logout?
-            button(class="logout-confirm") Confirm
-            button(class="logout-cancel") Cancel
+            .leave-server-label
+                img#confirm-logout.weird-form(src="/images/delete-icon.png")
+            p.weird-form-label Are you sure you want to logout?
+            button(class="logout-confirm form-button-cool") Confirm
+            button(class="logout-cancel form-button-deny") Cancel
 
         <div class="servers">
             <div class="user-servers">
@@ -98,7 +112,7 @@
                 <div class="message-input">
                   form.new-message-form#new-message-form
                     label(for="newMessage")
-                    input(id="new-message" type="text" name="newMessage" placeholder="new message....")
+                    input(id="new-message" type="text" name="newMessage" placeholder="new message...." autocomplete="off")
                     button.message-submit(type='submit') Send
                 </div>
             </div>
@@ -122,5 +136,6 @@ script(src="/js/leave-server.js")
 script(src="/js/delete-channel.js")
 script(src="/js/logout-user.js")
 script(src="/js/server-text.js")
+script(src="/js/close-forms.js")
 //- script(src="/js/load-messages.js")
 </html>
