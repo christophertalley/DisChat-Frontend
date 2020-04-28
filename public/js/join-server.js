@@ -65,7 +65,7 @@ joinButton.addEventListener('click', async (e) => {
     newServer.dataset.serverName = server.serverName;
     serverTitle.innerHTML = server.serverName;
     const randomImg = getRandomImg;
-    newServer.innerHTML = `<h3 class="NameDisplay${joinServerId} server-names hidden">${server.serverName} </h3><img src="${randomImg}" class="server-display">`;
+    newServer.innerHTML = `<h3 class="NameDisplay${joinServerId} server-names hidden">${server.serverName} </h3><img src="${randomI" class="server - display">`;
 
     newServer.addEventListener('mouseenter', async (e) => {
         console.log("in");
