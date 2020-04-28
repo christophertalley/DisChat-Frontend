@@ -23,6 +23,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         const serverArray = parsedRes.servers;
         const initialServer = serverArray[0];
 
+
         // This if block loads the servers and channels if there are any.
         if (initialServer) {
             serverId = initialServer.id;
@@ -64,6 +65,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     }
                 }
             }
+
+
             // initialServer.Users.forEach(user => {
             //     let newUser = document.createElement('li');
             //     newUser.dataset.userId = user.id;
@@ -80,12 +83,13 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
             let newServer = document.createElement("li");
             let randomImg = getRandomImg();
-            newServer.innerHTML = `<img src="${randomImg}" class="server-display servers-li" >`;
+            // newServer.innerHTML = `<img src="${randomImg}" class="server-display servers-li" >`;
             const userId = localStorage.getItem("DischatUserId");
             const userName = localStorage.getItem("DischatUserName");
 
-            // newServer.innerHTML = `<h3 class="${serverId}-name-display server-names hidden"> ${userName}'s First Server</h3> <img src="/images/sign-in-background.png" class="server-display">`;
-            serverList.append(newServer);
+
+            // newServer.innerHTML = `<h3 class="${serverId}-name-display server-names hidden"> ${userName}'s First Server</h3> <img src=${randomImg} class="server-display">`;
+            // serverList.append(newServer);
 
             // Don't know what this is for:
             // textInputBox.classList.remove("new-message-form");
@@ -115,8 +119,25 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 newServer.setAttribute('id', server.id)
                 newServer.dataset.serverId = server.id;
                 newServer.dataset.serverName = server.serverName;
+                newServer.classList.add('servers-li');
                 serverTitle.innerHTML = server.serverName;
                 let randomImg = getRandomImg();
+                newServer.innerHTML = `<h3 class="NameDisplay${server.id} server-names hidden"> ${userName}'s First Server</h3> <img src=${randomImg} class="server-display">`;
+                serverList.append(newServer);
+
+                // newServer.addEventListener('mouseenter', async (e) => {
+                //     console.log("in");
+                //     const serverNameDisplay = document.querySelector(`.NameDisplay${newServer.dataset.serverId}`);
+                //     // console.log(serverNameDisplay);
+                //     serverNameDisplay.classList.remove("hidden");
+                // });
+
+                // newServer.addEventListener('mouseleave', async (e) => {
+                //     console.log("out");
+                //     const serverNameDisplay = document.querySelector(`.NameDisplay${newServer.dataset.serverId}`);
+                //     // console.log(serverNameDisplay);
+                //     serverNameDisplay.classList.add("hidden");
+                // });
 
                 serverId = server.id;
                 // newServer.innerHTML = `<h3 class="NameDisplay${server.id} server-names hidden"> ${userName}'s First Server</h3> <img src="/images/${randomImg}" class="server-display">`;
@@ -238,7 +259,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             let newUser = document.createElement('li');
             newUser.classList.add('users-li');
             newUser.dataset.userId = user.id;
-            newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+            const randomUser = getRandomUser();
+            newUser.innerHTML = `<img class ="user-display" src="${randomUser}"><p class="select-user"> ${user.userName}</p>`;
 
             userList.appendChild(newUser);
         })
@@ -344,7 +366,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     let newUser = document.createElement('li');
                     newUser.classList.add('users-li');
                     newUser.dataset.userId = user.id;
-                    newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+                    const randomUser = getRandomUser();
+                    newUser.innerHTML = `<img class ="user-display" src="${randomUser}"><p class="select-user">${user.userName}</p>`;
 
                     userList.appendChild(newUser);
                 })

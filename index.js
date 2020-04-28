@@ -34,6 +34,10 @@ app.get("/log-in", (req, res) => {
     res.render('log-in')
 })
 
+app.get("/demo-log-in", (req, res) => {
+    res.render('demo-log-in')
+});
+
 app.get('/home', (req, res) => {
     res.render('chat')
 })
@@ -52,7 +56,7 @@ io.on('connection', (socket) => {
 
     // Receives message event
     socket.on('message', (msgObj) => {
-
+        console.log('sending message')
         // Sends message to all clients in certain channel (ChatId)
         io.in(`${msgObj.ChatId}`).emit('message', msgObj);
 
@@ -74,7 +78,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('leave server', (server) => {
-        // console.log('leaving server ' + server);
+        console.log('leaving server ' + server);
         socket.leave(server);
     })
 
@@ -90,13 +94,14 @@ io.on('connection', (socket) => {
     })
 
     socket.on('user joins server', (joinObject) => {
-
+        console.log('user joins server');
         const { username, joinServerId, UserId } = joinObject;
 
         socket.in(`${joinServerId}`).broadcast.emit('user joins server', { username, UserId });
     })
 
     socket.on('user leaves server', (leaveObject) => {
+        console.log('user leaves server');
         const { userId, serverId } = leaveObject;
 
         socket.in(`${serverId}`).broadcast.emit('user leaves server', userId);
