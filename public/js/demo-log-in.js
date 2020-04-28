@@ -156,7 +156,7 @@ demoLogInForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     // const formData = new FormData(logInForm);
-    const email = "demoEmail@email.com"
+    const email = "demo@email.com"
     const password = "demopassword"
 
     // const email = formData.get("email");
