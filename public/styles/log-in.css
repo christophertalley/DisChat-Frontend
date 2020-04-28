@@ -1,6 +1,10 @@
 body {
     background-image: url('/images/sign-in-background.png');
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
 }
 .sign-in-box {
     display: flex;
