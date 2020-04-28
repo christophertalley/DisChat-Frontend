@@ -38,6 +38,27 @@ const getRandomImg = () => {
     return images[randomNum];
 }
 
+const getRandomUser = () => {
+    let images = [
+        "/images/random-user-1.png",
+        "/images/random-user-2.png",
+        "/images/random-user-3.png",
+        "/images/random-user-4.png",
+        "/images/random-user-4.png",
+        "/images/random-user-5.png",
+        "/images/random-user-6.png",
+        "/images/random-user-7.png",
+        "/images/random-user-8.png",
+        "/images/random-user-9.png",
+        "/images/random-user-10.png",
+        "/images/random-user-11.png",
+    ];
+
+    let randomNum = Math.floor(Math.random() * Math.floor(images.length))
+    return images[randomNum];
+}
+
+
 
 formServer.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -87,6 +108,7 @@ formServer.addEventListener("submit", async (e) => {
         newServer.dataset.serverId = server.id;
         newServer.dataset.serverName = server.serverName;
         serverTitle.innerHTML = server.serverName;
+        newServer.innerHTML += `<h3 class="NameDisplay${server.id} server-names hidden">${server.serverName} </h3>`;
         socket.emit('leave channel', `${currentChannelId}`)
         socket.emit('leave server', `${serverId}`)
         serverId = server.id;
@@ -101,8 +123,9 @@ formServer.addEventListener("submit", async (e) => {
         userArray.forEach(user => {
             let newUser = document.createElement('li');
             newUser.dataset.userId = user.id;
+            const randomUser = getRandomUser();
             newUser.classList.add('users-li');
-            newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+            newUser.innerHTML = `<img class ="user-display" src="${randomUser}"><p class="select-user"> ${user.userName}</p>`;
             userList.appendChild(newUser);
         })
 
@@ -162,9 +185,7 @@ formServer.addEventListener("submit", async (e) => {
                     messageBox.innerHTML += `<p class="messages">${messages[i].User.userName}: <br/> ${messages[i].messageContent}</p>`;
                 }
             }
-            // messages.forEach(message => {
-            //     messageBox.innerHTML += `<p class="messages">${message.User.userName}: <br/> ${message.messageContent}</p>`;
-            // });
+
         } else {
             currentChannelId = '';
         }
@@ -216,8 +237,9 @@ formServer.addEventListener("submit", async (e) => {
             let newUser = document.createElement('li');
             newUser.classList.add('users-li');
             newUser.dataset.userId = user.id;
+            const randomUser = getRandomUser();
             // let newUser = `<li class='users-li'><p class="select-user"> # ${user.userName}</p></li>`
-            newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+            newUser.innerHTML = `<img class ="user-display" src="${randomUser}"><p class="select-user">${user.userName}</p>`;
             // newUserList += newUser;
             // console.log(newUserList);
             userList.appendChild(newUser);
@@ -229,5 +251,21 @@ formServer.addEventListener("submit", async (e) => {
         // userList.innerHTML = '';
     })
 
+    newServer.addEventListener('mouseenter', async (e) => {
+        // console.log("in");
+        const serverNameDisplay = document.querySelector(`.NameDisplay${newServer.dataset.serverId}`);
+        // console.log(serverNameDisplay);
+        serverNameDisplay.classList.remove("hidden");
+    });
+
+    newServer.addEventListener('mouseleave', async (e) => {
+        // console.log("out");
+        const serverNameDisplay = document.querySelector(`.NameDisplay${newServer.dataset.serverId}`);
+        // console.log(serverNameDisplay);
+        serverNameDisplay.classList.add("hidden");
+    });
+
 
 });
+
+

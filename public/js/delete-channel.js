@@ -130,6 +130,7 @@ deleteFormConfirmButton.addEventListener('click', async (e) => {
 });
 
 deleteFormCancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
     deleteConfirmForm.classList.toggle("hidden");
 })
 

@@ -4,6 +4,7 @@
 
 const searchForm = document.querySelector(".join-server");
 const searchIcon = document.getElementById("join-button");
+const joiningServerLabel = document.querySelector(".weird-form-label");
 
 searchIcon.addEventListener("click", (e) => {
     searchForm.classList.toggle('hidden');
@@ -19,6 +20,7 @@ searchForm.addEventListener('submit', async (e) => {
     const formData = new FormData(searchForm);
 
     let joinServerName = formData.get("joinServerName");
+    joiningServerLabel.innerHTML = `Do you wish to join the following server: ${joinServerName}? `
 
     try {
 

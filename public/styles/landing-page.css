@@ -244,6 +244,11 @@ img.body__icons-circle-2{
      background-color: rgb(133, 153, 241);
      color: white;
      font-size: 20px;
-     margin: auto;
+     margin:0 auto;
      padding: 10px 100px
+}
+.body__demo-a-button{
+    grid-row-start: 4;
+    padding: 10px 100px;
+    margin:0 auto;
 }

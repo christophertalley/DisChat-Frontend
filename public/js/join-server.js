@@ -11,7 +11,8 @@ socket.on('user joins server', (userObject) => {
     let newUser = document.createElement('li');
     newUser.classList.add('users-li');
     newUser.dataset.userId = UserId;
-    newUser.innerHTML = `<p class="select-user"> # ${username}</p>`;
+    const randomUser = getRandomUser();
+    newUser.innerHTML = `<img class ="user-display" src="${randomUser}"><p class="select-user">${username}</p>`;
     userList.appendChild(newUser);
 })
 
@@ -33,8 +34,8 @@ joinButton.addEventListener('click', async (e) => {
 
     let newServer = document.createElement("li");
     newServer.classList.add("servers-li");
-    newServer.innerHTML = '<img src="/images/sign-in-background.png" class="server-display">';
-    serverList.append(newServer);
+    // newServer.innerHTML = `<h3 class="NameDisplay${joinServerId} server-names hidden">${} </h3><img src="/images/sign-in-background.png" class="server-display">`;
+    // serverList.append(newServer);
 
 
 
@@ -63,6 +64,23 @@ joinButton.addEventListener('click', async (e) => {
     newServer.dataset.serverId = server.id;
     newServer.dataset.serverName = server.serverName;
     serverTitle.innerHTML = server.serverName;
+    newServer.innerHTML = `<h3 class="NameDisplay${joinServerId} server-names hidden">${server.serverName} </h3><img src="/images/sign-in-background.png" class="server-display">`;
+
+    newServer.addEventListener('mouseenter', async (e) => {
+        console.log("in");
+        const serverNameDisplay = document.querySelector(`.NameDisplay${newServer.dataset.serverId}`);
+        // console.log(serverNameDisplay);
+        serverNameDisplay.classList.remove("hidden");
+    });
+
+    newServer.addEventListener('mouseleave', async (e) => {
+        console.log("out");
+        const serverNameDisplay = document.querySelector(`.NameDisplay${newServer.dataset.serverId}`);
+        // console.log(serverNameDisplay);
+        serverNameDisplay.classList.add("hidden");
+    });
+
+    serverList.append(newServer);
     socket.emit('leave channel', `${currentChannelId}`)
     socket.emit('leave server', `${serverId}`)
     serverId = server.id;
@@ -74,7 +92,7 @@ joinButton.addEventListener('click', async (e) => {
         newChannel.dataset.channelName = channel.channelName;
         newChannel.classList.add("channels-li");
         newChannel.innerHTML = `<p class="select-channel"> # ${channel.channelName}</p>`;
-        channelList.append(newChannel);
+        channelList.prepend(newChannel);
         channelTitle.innerHTML = server.Channels[server.Channels.length - 1].channelName;
     })
 
@@ -125,7 +143,8 @@ joinButton.addEventListener('click', async (e) => {
         let newUser = document.createElement('li');
         newUser.dataset.userId = user.id;
         newUser.classList.add('users-li');
-        newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+        const randomUser = getRandomUser();
+        newUser.innerHTML = `<img class ="user-display" src="${randomUser}"><p class="select-user">${user.userName}</p>`;
         userList.appendChild(newUser);
     });
 
@@ -224,7 +243,8 @@ joinButton.addEventListener('click', async (e) => {
             let newUser = document.createElement('li');
             newUser.dataset.userId = user.id;
             newUser.classList.add('users-li');
-            newUser.innerHTML = `<p class="select-user"> # ${user.userName}</p>`;
+            const randomUser = getRandomUser();
+            newUser.innerHTML = `<img class ="user-display" src="${randomUser}"><p class="select-user">${user.userName}</p>`;
             userList.appendChild(newUser);
         })
 
