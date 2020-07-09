@@ -88,9 +88,9 @@ io.on('connection', (socket) => {
     })
 
     socket.on('delete channel', (deleteObject) => {
-        const { channelId, serverId } = deleteObject;
+        const { channelId, serverId, userThatDeleted } = deleteObject;
 
-        io.in(`${serverId}`).emit('delete channel', channelId);
+        socket.in(`${serverId}`).broadcast.emit('delete channel', { channelId, userThatDeleted });
     })
 
     socket.on('user joins server', (joinObject) => {

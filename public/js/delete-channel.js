@@ -5,12 +5,13 @@ const deleteConfirmForm = document.querySelector(".confirm-delete-channel");
 const deleteFormConfirmButton = document.querySelector(".delete-channel-confirm");
 const deleteFormCancelButton = document.querySelector(".delete-channel-deny");
 
-socket.on('delete channel', (channelId) => {
-
+socket.on('delete channel', ({ channelId, userThatDeleted }) => {
+    // Change channel title to "Channel has been deleted or something"
     const channelList = document.querySelectorAll('.channels-li');
     channelList.forEach(channel => {
         if (channel.dataset.channelId === channelId) {
             channel.remove();
+            channelTitle.innerHTML = `This Channel Has Been Deleted By ${userThatDeleted}`
         }
     })
     const channelListAfterRemove = document.querySelectorAll('.channels-li');
@@ -32,9 +33,10 @@ deleteIcon.addEventListener('click', async (e) => {
 
 deleteFormConfirmButton.addEventListener('click', async (e) => {
     e.preventDefault();
+    const userThatDeleted = localStorage.getItem('DischatUserName')
 
     socket.emit('leave channel', `${currentChannelId}`);
-    socket.emit('delete channel', { channelId: currentChannelId, serverId });
+    socket.emit('delete channel', { channelId: currentChannelId, serverId, userThatDeleted });
 
     // channelList.innerHTML = '';
     // // userList.innerHTML = '';
@@ -45,7 +47,18 @@ deleteFormConfirmButton.addEventListener('click', async (e) => {
     textInputBox.classList.add("hidden");
     textInputBox.classList.remove("new-message-form");
     const channelList = document.querySelectorAll('.channels-li');
-
+    channelList.forEach(channel => {
+        if (channel.dataset.channelId === currentChannelId) {
+            channel.remove();
+        }
+    })
+    const channelListAfterRemove = document.querySelectorAll('.channels-li');
+    deleteIcon.classList.add('hidden');
+    if (channelListAfterRemove.length === 0) {
+        // deleteIcon.classList.add('hidden');
+        textInputBox.classList.add("hidden");
+        textInputBox.classList.remove("new-message-form");
+    }
     // const response = await fetch(`${api}servers/${serverId}/channels`);
     // console.log(serverId);
 
@@ -116,7 +129,6 @@ deleteFormConfirmButton.addEventListener('click', async (e) => {
 
     //     });
     // });
-
     const res = await fetch(`${api}channels/${currentChannelId}`, {
         method: 'DELETE'
     });
