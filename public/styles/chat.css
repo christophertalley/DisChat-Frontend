@@ -757,3 +757,14 @@ opacity: 0.7;
 #logo {
     cursor: auto;
 }
+
+#server-not-found-text {
+    display: flex;
+    justify-content: center;
+    padding: none;
+    margin: none;
+}
+
+#join-server-button {
+    margin-top: 0;
+}

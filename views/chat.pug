@@ -29,8 +29,8 @@
               label(for="joinServerName") Join Server:
                 img#join-server.close-out-form(src="/images/delete-icon.png")
             input.form-input-cool(id='newJoinServer' type="text" name="joinServerName" placeholder="Please enter the name of the server you'd like to join." autocomplete="off")
-            p#server-not-found-text.weird-form-label
-            <input class="submit form-button-cool" type="submit" role="button" name="join-server" value="Join Server"><br>
+            p#server-not-found-text
+            <input id='join-server-button' class="submit form-button-cool" type="submit" role="button" name="join-server" value="Join Server"><br>
 
         form.hidden.confirm-join-server
             .join-server-label
