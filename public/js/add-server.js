@@ -2,7 +2,7 @@
 const api = document.querySelector('link[rel="api"]').href;
 const addServer = document.querySelector("#add-button");
 const serverList = document.querySelector("#server-list");
-const formServer = document.querySelector(".create-box");
+// const formServer = document.querySelector(".create-box");
 const buttonNewServer = document.querySelector(".submit");
 const serverInput = document.getElementById('newServer');
 const serverTitle = document.querySelector('.server-name');
@@ -13,6 +13,17 @@ const textInputBox = document.querySelector("#new-message-form");
 addServer.addEventListener("click", async (e) => {
     e.preventDefault();
     formServer.classList.toggle("hidden");
+
+    if (!searchForm.classList.contains('hidden')) {
+        searchForm.classList.add('hidden')
+    }
+    if (!leaveServer.classList.contains('hidden')) {
+        leaveServer.classList.add('hidden')
+    }
+    if (!formChannel.classList.contains('hidden')) {
+        formChannel.classList.add('hidden')
+    }
+
     serverInput.focus();
     serverInput.value = "";
 })

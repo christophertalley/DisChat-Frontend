@@ -2,7 +2,6 @@
 
 // const api = document.querySelector('link[rel="api"]').href;
 
-const searchForm = document.querySelector(".join-server");
 const searchIcon = document.getElementById("join-button");
 const joiningServerLabel = document.getElementById("join-server-confirm-text");
 const serverNotFoundText = document.getElementById('server-not-found-text');
@@ -10,6 +9,19 @@ const serverNotFoundText = document.getElementById('server-not-found-text');
 
 searchIcon.addEventListener("click", (e) => {
     searchForm.classList.toggle('hidden');
+
+
+    if (!leaveServer.classList.contains('hidden')) {
+        leaveServer.classList.add('hidden')
+    }
+    if (!formChannel.classList.contains('hidden')) {
+        formChannel.classList.add('hidden')
+    }
+    if (!formServer.classList.contains('hidden')) {
+        formServer.classList.add('hidden')
+    }
+
+
     joinServerInput.value = "";
     serverNotFoundText.innerHTML = '';
     joinServerInput.focus();
