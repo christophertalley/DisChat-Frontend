@@ -54,6 +54,10 @@ addChannel.addEventListener("click", async (e) => {
 formChannel.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    if (channelInput.value === '') {
+        return
+    }
+
     const formData = new FormData(formChannel);
 
     const channelName = formData.get("channelName");

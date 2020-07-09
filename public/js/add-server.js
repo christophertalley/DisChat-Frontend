@@ -63,6 +63,10 @@ const getRandomUser = () => {
 formServer.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    if (serverInput.value === '') {
+        return
+    }
+
     const channelTitle = document.getElementById('channel-name');
     let newServer = document.createElement("li");
     newServer.classList.add("servers-li");

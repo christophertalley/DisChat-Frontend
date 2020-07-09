@@ -13,6 +13,10 @@ const user = localStorage.getItem('DischatUserName');
 sendButton.addEventListener('click', async e => {
     e.preventDefault();
 
+    if (chatInput.value === '') {
+        return;
+    }
+
     // Emits message to front end server
     socket.emit('message', {
         messageContent: chatInput.value,
