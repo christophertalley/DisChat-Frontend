@@ -100,7 +100,7 @@ async function passwordInput(letters, i) {
 
 
 async function passwordDemo(password) {
-    console.log("outside");
+    // console.log("outside");
     for (let i = 0; i < password.length; i++) {
         passwordInput(password[i], i);
     }

@@ -55,6 +55,7 @@ joinButton.addEventListener('click', async (e) => {
     const parsedRes = await res.json();
     const server = parsedRes.server;
 
+
     channelList.innerHTML = '';
     messageBox.innerHTML = '';
     channelTitle.innerHTML = '';
@@ -68,14 +69,14 @@ joinButton.addEventListener('click', async (e) => {
     newServer.innerHTML = `<h3 class="NameDisplay${joinServerId} server-names hidden">${server.serverName} </h3><img src="${randomImg}" class="server-display">`;
 
     newServer.addEventListener('mouseenter', async (e) => {
-        console.log("in");
+        // console.log("in");
         const serverNameDisplay = document.querySelector(`.NameDisplay${newServer.dataset.serverId}`);
         // console.log(serverNameDisplay);
         serverNameDisplay.classList.remove("hidden");
     });
 
     newServer.addEventListener('mouseleave', async (e) => {
-        console.log("out");
+        // console.log("out");
         const serverNameDisplay = document.querySelector(`.NameDisplay${newServer.dataset.serverId}`);
         // console.log(serverNameDisplay);
         serverNameDisplay.classList.add("hidden");
