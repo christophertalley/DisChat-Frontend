@@ -10,16 +10,15 @@
 }
 body {
     background-color: rgb(42, 39, 44);
-    overflow-x: hidden;
+    overflow: hidden;
 }
 header{
-     padding: 10px 4px 10px 10px;
+     padding: 10px 4px 0px 10px;
 }
 .header__nav-bar{
      display: grid;
-     grid-template-rows: 1fr;
+     grid-template-rows: 80px;
      grid-template-columns: 1fr 3fr 1.5fr;
-     padding-bottom: 20px;
 }
 .header__logo{
      padding-left: 10px;
@@ -37,41 +36,65 @@ header{
 }
 .header__buttons{
      display: flex;
+     width: 25vw;
      grid-column-start: 3;
      padding-left: 5px;
-     margin: 5px 0px 30px 0px;
-     justify-content: space-around;
+     justify-content: space-between;
+}
+.header__buttons>button {
+    opacity: 0.6;
+
+}
+.header__buttons>button:hover{
+    opacity: 1.0;
+    cursor: pointer;
 }
 .header__login-button{
      border: 2px solid gray;
-     padding: 5px 35px 7px;
      border-radius: 15px;
-     line-height: 24px;
-     margin: 5px 15px 5px 155px;
+     line-height: 20px;
      background-color: rgb(133, 153, 241);
      color: white;
      font-size: 16px;
+     max-height: 40px;
+     min-width: 100px;
+     padding-right: 10px;
+     padding-left: 10px;
+}
+.header__demo-button{
+     border: 2px solid gray;
+     border-radius: 15px;
+     line-height: 20px;
+     background-color: #ffcc80;
+     color: white;
+     font-size: 16px;
+     max-height: 40px;
+     min-width: 100px;
+     padding-right: 10px;
+     padding-left: 10px;
 }
 .header__sign-up-button{
      border: 2px solid gray;
      padding: 5px 25px 7px;
+     max-height: 40px;
+     min-width: 100px;
      border-radius: 15px;
-     line-height: 24px;
-     margin: 5px 15px 5px 5px;
+     line-height: 20px;
      font-size: 16px;
+     padding-right: 10px;
+     padding-left: 10px;
 }
  /* top body portion:  message & demo button */
  div.body{
      display: grid;
      grid-template-rows: 60px 60px 700px 80px;
-     padding-top: 20px;
-     padding-bottom: 30px;
+     /* padding-top: 20px;
+     padding-bottom: 30px; */
      max-width: 100%;
 }
 .body__heading{
      /* display: flex;
      justify-content: center; */
-     padding: 0px 20px 0px;
      grid-row-start: 1;
      font-size: 40px;
      text-align: center;
@@ -245,10 +268,8 @@ img.body__icons-circle-2{
      color: white;
      font-size: 20px;
      margin:0 auto;
-     padding: 10px 100px
 }
 .body__demo-a-button{
     grid-row-start: 4;
-    padding: 10px 100px;
     margin:0 auto;
 }
