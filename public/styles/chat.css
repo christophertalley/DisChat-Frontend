@@ -296,12 +296,12 @@ h3 {
     justify-content: center;
     align-items: center;
     border-top: 1px solid black;
-    height: 60px;
+    height: 8vh;
     box-sizing: border-box;
 }
 
 .user-container {
-    height: 40px;
+    height: 8vh;
     display: flex;
 
     /* justify-content: flex-start;
@@ -441,6 +441,7 @@ h3 {
         border-radius: 25px;
         flex-direction: column;
         padding: 8px;
+        align-items: center;
 }
 .app-info-label {
     display: flex;
@@ -458,13 +459,53 @@ h3 {
     padding-top: 10px;
     cursor: pointer;
     opacity: 0.6;
+    display: flex;
+    flex-direction: row;
 }
 .app-info-page:hover {
     opacity: 1.0;
 }
+.app-info__footer {
+    align-self: flex-end;
+    position: relative;
+    bottom: 0;
+    top: 200px;
+    height: 2.5rem;
+}
+.dev-info__heading {
+    text-align: center;
+    padding: 0;
+    text-decoration: underline;
+    margin: 0;
+}
 .dev-info {
+    padding: 0;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    list-style: none;
+    min-width: 75%;
+    justify-content: space-between;
+}
+.dev-info__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dev-info__links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+.dev-info__links>a{
+    color: white;
+}
+.dev-info__links>i:hover{
+    cursor: pointer;
 }
 
 .hidden{
@@ -560,10 +601,12 @@ h3 {
     : white;
 } */
 #new-message {
+    position: absolute;
+    bottom: 0;
     display: block;
     width: 100%;
     padding: 8px 16px;
-    line-height: 25px;
+    line-height: 8vh;
     font-size: 14px;
     font-weight: 500;
     font-family: inherit;
@@ -708,6 +751,7 @@ padding-bottom: 8px;
     display: flex;
     width: 100%;
     align-content: center;
+    max-height: 15vh;
 }
 .new-message-form > span,
     #new-message {
