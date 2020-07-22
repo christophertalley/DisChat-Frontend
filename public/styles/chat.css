@@ -469,8 +469,11 @@ h3 {
     align-self: flex-end;
     position: relative;
     bottom: 0;
-    top: 200px;
+
     height: 2.5rem;
+}
+.p1,.p2,.p3 {
+    padding: 15px;
 }
 .dev-info__heading {
     text-align: center;
