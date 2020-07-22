@@ -1,5 +1,6 @@
 const closeForms = document.querySelectorAll(".close-out-form");
 const weirdForms = document.querySelectorAll(".weird-form");
+const appInfoClose = document.querySelector(".app-info-page");
 
 // Each close out form icon has an id that macthes the class of the form
 // That it is on. When a user clicks on it, the interpolated version
@@ -23,3 +24,8 @@ weirdForms.forEach((button) => {
         desiredForm.classList.toggle("hidden");
     })
 });
+
+appInfoClose.addEventListener("click", async (e)=> {
+    const appInfoPage = document.querySelector(`.${e.target.id}`);
+    appInfoPage.classList.toggle("hidden");
+})

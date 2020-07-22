@@ -426,7 +426,46 @@ h3 {
         padding: 8px;
 
 }
-
+/* app info styling */
+.app-info {
+    display: flex;
+        width: 700px;
+        height: 600px;
+        background: #555252;
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        border-radius: 25px;
+        flex-direction: column;
+        padding: 8px;
+}
+.app-info-label {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: start;
+    align-items: start;
+}
+.app-info-page {
+    box-sizing: content-box;
+    height: 20px;
+    width: 20px;
+    /* position: relative; */
+    /* padding-right: 10px; */
+    padding-top: 10px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+.app-info-page:hover {
+    opacity: 1.0;
+}
+.dev-info {
+    display: flex;
+    flex-direction: row;
+}
 
 .hidden{
     display: none;

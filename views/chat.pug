@@ -60,6 +60,59 @@
             button(class="logout-confirm form-button-cool") Confirm
             button(class="logout-cancel form-button-deny") Cancel
 
+        .hidden.app-info
+            .app-info-label
+                img#app-info.app-info-page(src="/images/delete-icon.png")
+            section.app-info__main
+                section.app_info__header
+                    div
+                        h2 Welcome to DisChat!
+
+                section.app-info__body
+                    .p1
+                        p talk about how to send messages and switch between servers and channels.
+                    .p2
+                        p talk about how to create and join servers
+                    .p3
+                        p talk about how to create and delete channels
+
+
+                footer.app-info__footer
+                    h6 More about the developers
+                    ul.dev-info
+                        li.dev-info__item
+                            div
+                                p Chris Talley
+                                div.dev-info__links
+                                    i.fa.fa-github
+                                        a(href="/github")
+                                    i.fa.fa-linkedin
+                                        a(href="/github")
+                                    i.fa.fa-angellist
+                                        a(href="/github")
+                        li.dev-info__item
+                            div
+                                p Mark Mansolino
+                                div.dev-info__links
+                                    i.fa.fa-github
+                                        a(href="/github")
+                                    i.fa.fa-linkedin
+                                        a(href="/github")
+                                    i.fa.fa-angellist
+                                        a(href="/github")
+                        li.dev-info__item
+                            div
+                                p Alfredo Quiroga
+                                div.dev-info__links
+                                    i.fa.fa-github
+                                        a(href="/github")
+                                    i.fa.fa-linkedin
+                                        a(href="/github")
+                                    i.fa.fa-angellist
+                                        a(href="/github")
+
+
+
         <div class="servers">
             <div class="user-servers">
                 <ul id="server-list-home">
@@ -138,5 +191,7 @@ script(src="/js/delete-channel.js")
 script(src="/js/logout-user.js")
 script(src="/js/server-text.js")
 script(src="/js/close-forms.js")
+script(src="/js/app-info.js")
+<script src="https://use.fontawesome.com/f8b076820b.js"></script>
 //- script(src="/js/load-messages.js")
 </html>
