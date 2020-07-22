@@ -136,6 +136,7 @@ ul {
     opacity: 1;
     transition: all 0.3s ease 0s;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .server-names{
@@ -160,8 +161,14 @@ h3 {
      margin-bottom: 3px;
 }
 
-
-
+.fa-info{
+    margin-right: 8px;
+    opacity: 0.7;
+}
+.fa-info:hover{
+    opacity: 1.0;
+    cursor: pointer;
+}
 
 
 .server{
@@ -172,6 +179,8 @@ h3 {
     border-bottom: 1px solid black;
     height: 68px;
     overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .channel-name{
@@ -562,8 +571,16 @@ h3 {
 .home-li {
     list-style-type: none;
     padding-top: 10px;
+    opacity: 0.7;
+    cursor: pointer;
 }
-
+.home-li:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.home-li>.server-display:hover{
+    cursor: pointer;
+}
 .add-li {
     list-style-type: none;
     padding-top: 10px;
