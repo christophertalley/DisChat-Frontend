@@ -1,7 +1,7 @@
 
 const addChannel = document.querySelector(".add-channel");
 const channelList = document.querySelector(".display-channels");
-// const formChannel = document.querySelector(".create-channel");
+formChannel = document.querySelector(".create-channel");
 const channelInput = document.getElementById('newChannel');
 
 
