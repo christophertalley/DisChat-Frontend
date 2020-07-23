@@ -2,7 +2,7 @@
 const api = document.querySelector('link[rel="api"]').href;
 const addServer = document.querySelector("#add-button");
 const serverList = document.querySelector("#server-list");
-// const formServer = document.querySelector(".create-box");
+formServer = document.querySelector(".create-box");
 const buttonNewServer = document.querySelector(".submit");
 const serverInput = document.getElementById('newServer');
 const serverTitle = document.querySelector('.server-name');
