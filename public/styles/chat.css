@@ -305,12 +305,11 @@ h3 {
     justify-content: center;
     align-items: center;
     border-top: 1px solid black;
-    height: 8vh;
+    height: 7.5vh;
     box-sizing: border-box;
 }
 
 .user-container {
-    height: 8vh;
     display: flex;
 
     /* justify-content: flex-start;
@@ -318,7 +317,6 @@ h3 {
     justify-content: space-between;
     align-items: center;
     border-radius: 2px;
-    height: 70%;
     width: 80%;
 }
 
@@ -540,7 +538,7 @@ h3 {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    height: 60px;
+    height: 7.5vh;
     border-top: 1px solid black;
 
 }
@@ -625,7 +623,6 @@ h3 {
     bottom: 0;
     display: block;
     width: 100%;
-    padding: 8px 16px;
     line-height: 8vh;
     font-size: 14px;
     font-weight: 500;
@@ -636,6 +633,8 @@ h3 {
     border: 1px solid var(--input-border);
     background: var(--input-background);
     transition: border .3s ease;
+    height: 7.5vh;
+    padding-left: 15px;
 }
 
 .form-input-cool {
@@ -771,7 +770,7 @@ padding-bottom: 8px;
     display: flex;
     width: 100%;
     align-content: center;
-    max-height: 15vh;
+    height: 50px;
 }
 .new-message-form > span,
     #new-message {
@@ -823,6 +822,8 @@ display: inline-block;
 transition: all 0.3s ease 0s;
 /* position: relative; */
 opacity: 0.7;
+height: 4vh;
+margin-top: 1.33vh;
 }
 .message-submit:hover {
     opacity: 1;
