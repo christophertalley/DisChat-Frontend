@@ -1,7 +1,7 @@
 
 const addChannel = document.querySelector(".add-channel");
 const channelList = document.querySelector(".display-channels");
-const formChannel = document.querySelector(".create-channel");
+// const formChannel = document.querySelector(".create-channel");
 const channelInput = document.getElementById('newChannel');
 
 
@@ -46,6 +46,18 @@ socket.on('add channel', (addedChannel) => {
 addChannel.addEventListener("click", async (e) => {
     e.preventDefault();
     formChannel.classList.toggle("hidden");
+
+    if (!searchForm.classList.contains('hidden')) {
+        searchForm.classList.add('hidden')
+    }
+    if (!leaveServer.classList.contains('hidden')) {
+        leaveServer.classList.add('hidden')
+    }
+    if (!formServer.classList.contains('hidden')) {
+        formChannel.classList.add('hidden')
+    }
+
+
     channelInput.focus();
     channelInput.value = "";
 })
@@ -53,6 +65,10 @@ addChannel.addEventListener("click", async (e) => {
 
 formChannel.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (channelInput.value === '') {
+        return
+    }
 
     const formData = new FormData(formChannel);
 

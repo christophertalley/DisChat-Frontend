@@ -1,7 +1,7 @@
 // import { api } from './utils.js';
 // const api = document.querySelector('link[rel="api"]').href;
 const leaveButton = document.getElementById("leave-button");
-const leaveServer = document.querySelector(".confirm-leave-server");
+// const leaveServer = document.querySelector(".confirm-leave-server");
 const leaveSubmit = document.querySelector(".server-leave-confirm");
 const leaveDeny = document.querySelector(".server-leave-deny");
 
@@ -17,6 +17,16 @@ socket.on('user leaves server', (userId) => {
 
 leaveButton.addEventListener("click", async (e) => {
     leaveServer.classList.toggle("hidden");
+
+    if (!searchForm.classList.contains('hidden')) {
+        searchForm.classList.add('hidden')
+    }
+    if (!formServer.classList.contains('hidden')) {
+        leaveServer.classList.add('hidden')
+    }
+    if (!formChannel.classList.contains('hidden')) {
+        formChannel.classList.add('hidden')
+    }
 });
 
 leaveSubmit.addEventListener("click", async (e) => {

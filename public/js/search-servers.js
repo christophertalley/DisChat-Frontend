@@ -2,17 +2,36 @@
 
 // const api = document.querySelector('link[rel="api"]').href;
 
-const searchForm = document.querySelector(".join-server");
 const searchIcon = document.getElementById("join-button");
-const joiningServerLabel = document.querySelector(".weird-form-label");
+const joiningServerLabel = document.getElementById("join-server-confirm-text");
+const serverNotFoundText = document.getElementById('server-not-found-text');
+
 
 searchIcon.addEventListener("click", (e) => {
     searchForm.classList.toggle('hidden');
+
+
+    if (!leaveServer.classList.contains('hidden')) {
+        leaveServer.classList.add('hidden')
+    }
+    if (!formChannel.classList.contains('hidden')) {
+        formChannel.classList.add('hidden')
+    }
+    if (!formServer.classList.contains('hidden')) {
+        formServer.classList.add('hidden')
+    }
+
+
     joinServerInput.value = "";
+    serverNotFoundText.innerHTML = '';
     joinServerInput.focus();
 })
 
-
+searchForm.addEventListener('input', e => {
+    if (serverNotFoundText.innerHTML) {
+        serverNotFoundText.innerHTML = ''
+    }
+})
 
 searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -28,17 +47,24 @@ searchForm.addEventListener('submit', async (e) => {
         if (!res.ok) {
             throw res;
         }
-        searchForm.classList.add('hidden');
+
 
         const parsedRes = await res.json();
-        // console.log(parsedRes);
-        const server = parsedRes.foundServer;
 
-        joinServerId = server.id;
-        joinServerForm.classList.remove("hidden");
+        if (parsedRes === 'server not found') {
+            // Needs better styling
+            serverNotFoundText.innerHTML = "It looks like that server doesn't exist."
+        } else {
+            searchForm.classList.add('hidden');
+            const server = parsedRes.foundServer;
+
+            joinServerId = server.id;
+            joinServerForm.classList.remove("hidden");
+        }
+
 
 
     } catch (e) {
-        console.log(e)
+        // console.log(e)
     }
 })

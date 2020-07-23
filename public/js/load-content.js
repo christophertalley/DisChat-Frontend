@@ -6,6 +6,12 @@ let joinServerId;
 
 const userList = document.querySelector('#users-list');
 const channelTitle = document.getElementById('channel-name');
+const searchForm = document.querySelector(".join-server");
+const leaveServer = document.querySelector(".confirm-leave-server");
+const formChannel = document.querySelector(".create-channel");
+const formServer = document.querySelector(".create-box");
+
+
 
 window.addEventListener("DOMContentLoaded", async (e) => {
     const serverList = document.querySelector("#server-list");

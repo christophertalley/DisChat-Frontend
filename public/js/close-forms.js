@@ -7,7 +7,7 @@ const weirdForms = document.querySelectorAll(".weird-form");
 
 closeForms.forEach((button) => {
     button.addEventListener("click", async (e) => {
-        console.log(e.target.id)
+
         let desiredForm = document.querySelector(`.${e.target.id}`);
         desiredForm.classList.toggle("hidden");
     })
@@ -18,7 +18,7 @@ closeForms.forEach((button) => {
 
 weirdForms.forEach((button) => {
     button.addEventListener("click", async (e) => {
-        console.log(e.target.id)
+        // console.log(e.target.id)
         let desiredForm = document.querySelector(`.${e.target.id}`);
         desiredForm.classList.toggle("hidden");
     })
