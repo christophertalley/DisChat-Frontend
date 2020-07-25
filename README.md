@@ -19,3 +19,6 @@
 - Pug
 - CSS3
 - HTML5
+- Socket.IO
+
+![alt](https://media.giphy.com/media/YPPCCSaSkKm15HFvIk/giphy.gif)
