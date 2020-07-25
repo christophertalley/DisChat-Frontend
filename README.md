@@ -21,5 +21,7 @@
 - HTML5
 - Socket.IO
 
+## Features
+
 ### Instant messaging between users without reloading using WebSocket protocol:
 ![alt](https://media.giphy.com/media/kgZuvRCqi3RXNDIRUT/giphy.gif)
