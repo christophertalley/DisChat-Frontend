@@ -24,4 +24,7 @@
 ## Features
 
 ### Instant messaging between users without reloading using WebSocket protocol:
-![alt](https://media.giphy.com/media/kgZuvRCqi3RXNDIRUT/giphy.gif)
+![messaging](https://media.giphy.com/media/kgZuvRCqi3RXNDIRUT/giphy.gif)
+
+### Switching servers, displaying a new set of channels and users within a server
+![switching-servers](https://media.giphy.com/media/H1MvNYYlwYUSt9x45X/giphy.gif)
