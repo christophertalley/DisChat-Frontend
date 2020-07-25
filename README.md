@@ -1,6 +1,7 @@
 # DisChat
 
-[Back end repository](https://github.com/SauceKnight/DisChat)
+## [Demo the site](https://dischat-application.herokuapp.com/)
+Just click on the "Demo" button to sign in as a demo user
 
 ## Developers
 
@@ -35,10 +36,14 @@
 ### Adding a server and channels within the new server, and sending messages exclusive to those channels:
 ![adding-server-and-channel](https://media.giphy.com/media/Rki1pVcjVa4kGi1wtL/giphy.gif)
 
-
 ### Joining a server by searching for the name
 ![joining-a-server](https://media.giphy.com/media/KDo1imHaNCZIAmUWo7/giphy.gif)
 
 ### Leaving a server
 ![leaving-a-server](https://media.giphy.com/media/jQaqFyTEXI7GRlgfpo/giphy.gif)
+
+## Links
+
+
+[Back end repository](https://github.com/SauceKnight/DisChat)
 
