@@ -35,5 +35,10 @@
 ### Adding a server and channels within the new server, and sending messages exclusive to those channels:
 ![adding-server-and-channel](https://media.giphy.com/media/Rki1pVcjVa4kGi1wtL/giphy.gif)
 
+
+### Joining a server by searching for the name
+![joining-a-server](https://media.giphy.com/media/KDo1imHaNCZIAmUWo7/giphy.gif)
+
 ### Leaving a server
 ![leaving-a-server](https://media.giphy.com/media/jQaqFyTEXI7GRlgfpo/giphy.gif)
+
