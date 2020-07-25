@@ -1,6 +1,9 @@
 # [DisChat](https://dischat-application.herokuapp.com/)
 Click on the "Demo" button to sign in as a demo user
 
+## What is DisChat?
+DisChat is a full-stack chat application in which users can create "servers" and channels within those servers in order to send messages to each other in real time.
+
 ## Developers
 
 - [Chris Talley](https://christalley.dev/) ([GitHub](https://github.com/christophertalley) | [LinkedIn](https://www.linkedin.com/in/chris-talley-91814a19b) | [AngelList](https://angel.co/u/chris-talley-3))
@@ -42,6 +45,6 @@ Click on the "Demo" button to sign in as a demo user
 
 ## Links
 
-
 [Back end repository](https://github.com/SauceKnight/DisChat)
+
 
