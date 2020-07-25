@@ -1,7 +1,5 @@
-# DisChat
-
-## [Demo the site](https://dischat-application.herokuapp.com/)
-Just click on the "Demo" button to sign in as a demo user
+# [DisChat](https://dischat-application.herokuapp.com/)
+Click on the "Demo" button to sign in as a demo user
 
 ## Developers
 
