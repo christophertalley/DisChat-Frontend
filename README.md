@@ -1,4 +1,6 @@
-# DisChat-Frontend
+# DisChat
+
+[Back end repository](https://github.com/SauceKnight/DisChat)
 
 ## Developers
 
@@ -9,11 +11,12 @@
 
 ## Technologies
 
-JavaScript
-Express
-Node
-PostgreSQL
-Sequelize
-Pug
-CSS3
-HTML5
+- JavaScript
+- Express
+- Node
+- PostgreSQL
+- Sequelize
+- Pug
+- CSS3
+- HTML5
+
