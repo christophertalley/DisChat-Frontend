@@ -28,3 +28,6 @@
 
 ### Switching servers, displaying a new set of channels and users within a server
 ![switching-servers](https://media.giphy.com/media/H1MvNYYlwYUSt9x45X/giphy.gif)
+
+### Switching channels, displaying and sending new messages exclusive to each channel
+![switching-channels](https://media.giphy.com/media/fr5OZd3nrUwxuQ42T6/giphy.gif)
