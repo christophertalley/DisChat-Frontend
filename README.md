@@ -31,3 +31,6 @@
 
 ### Switching channels, displaying and sending new messages exclusive to each channel
 ![switching-channels](https://media.giphy.com/media/fr5OZd3nrUwxuQ42T6/giphy.gif)
+
+### Adding a server and channels within the new server, and sending messages exclusive to those channels:
+![adding-server-and-channel](https://media.giphy.com/media/Rki1pVcjVa4kGi1wtL/giphy.gif)
