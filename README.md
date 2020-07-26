@@ -46,7 +46,7 @@ DisChat is a full-stack chat application in which users can create "servers" and
 ## Code Highlights
 
 
-### Path of a WebSocket event from client emitter to server, then to all relevant clients
+### Path of a WebSocket event from client -> server -> clients
 
 #### Client event emitter
 ```javascript
