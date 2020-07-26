@@ -46,7 +46,7 @@ DisChat is a full-stack chat application in which users can create "servers" and
 ## Code Highlights
 
 
-### Path of a WebSocket event from client -> server -> clients
+### Path of a WebSocket event from client -> server -> clients using Socket.IO
 
 #### Client event emitter
 ```javascript
@@ -61,7 +61,7 @@ deleteFormConfirmButton.addEventListener('click', async (e) => {
 });
 ```
 
-#### Server Socket.IO event handler and emitter
+#### Server event handler and emitter
 ```javascript
 // All server WebSocket event handlers are inside here
 io.on('connection', (socket) => {
@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-#### Client Socket.IO event handler
+#### Client event handler
 
 ```javascript
 // Each event has a string identifier and a callback function that takes in an argument sent from the server
