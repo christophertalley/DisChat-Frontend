@@ -58,7 +58,7 @@ searchForm.addEventListener('submit', async (e) => {
 
 
         const parsedRes = await res.json();
-        console.log(parsedRes)
+
         if (parsedRes === 'server not found') {
             // Needs better styling
             serverNotFoundText.innerHTML = "It looks like that server doesn't exist."
