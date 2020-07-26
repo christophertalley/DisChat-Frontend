@@ -41,19 +41,29 @@ searchForm.addEventListener('submit', async (e) => {
     let joinServerName = formData.get("joinServerName");
     joiningServerLabel.innerHTML = `Do you wish to join the following server: ${joinServerName}? `
 
+    const userId = localStorage.getItem('DischatUserId')
+
     try {
 
-        const res = await fetch(`${api}servers/find/${joinServerName}`);
+        const res = await fetch(`${api}servers/find/${joinServerName}`, {
+            method: 'PUT',
+            body: JSON.stringify({ userId }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         if (!res.ok) {
             throw res;
         }
 
 
         const parsedRes = await res.json();
-
+        console.log(parsedRes)
         if (parsedRes === 'server not found') {
             // Needs better styling
             serverNotFoundText.innerHTML = "It looks like that server doesn't exist."
+        } else if (parsedRes === 'already in server') {
+            serverNotFoundText.innerHTML = "You're already in this server."
         } else {
             searchForm.classList.add('hidden');
             const server = parsedRes.foundServer;

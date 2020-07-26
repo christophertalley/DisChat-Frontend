@@ -26,7 +26,6 @@ joinButton.addEventListener('click', async (e) => {
     e.preventDefault();
     joinServerInput.value = "";
     joinServerForm.classList.toggle("hidden");
-
     const UserId = localStorage.getItem("DischatUserId");
     const username = localStorage.getItem("DischatUserName");
 
