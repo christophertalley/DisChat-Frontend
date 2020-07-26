@@ -45,6 +45,32 @@ DisChat is a full-stack chat application in which users can create "servers" and
 
 ## Code Highlights
 
+### Example of client Socket.IO event handler
+
+```javascript
+// Each event gets a unique string and a callback function that takes in an argument sent from the server
+socket.on('delete channel', ({ channelId, userThatDeleted }) => {
+    
+    const channelList = document.querySelectorAll('.channels-li');
+    
+    // Find the deleted channel and change the title
+    channelList.forEach(channel => {
+        if (channel.dataset.channelId === channelId) {
+            channel.remove();
+            channelTitle.innerHTML = `This Channel Has Been Deleted By ${userThatDeleted}`
+        }
+    })
+    const channelListAfterRemove = document.querySelectorAll('.channels-li');
+
+    // Hide page elements corresponding to deleted channel
+    if (channelListAfterRemove.length === 0) {
+        deleteIcon.classList.add('hidden');
+        textInputBox.classList.add("hidden");
+        textInputBox.classList.remove("new-message-form");
+    }
+})
+```
+
 ### Example of server Socket.IO event handler
 ```javascript
 // Each event gets a unique string and a callback function that takes in an argument sent from the client
