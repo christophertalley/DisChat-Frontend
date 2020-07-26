@@ -43,6 +43,20 @@ DisChat is a full-stack chat application in which users can create "servers" and
 ### Leaving a server
 ![leaving-a-server](https://media.giphy.com/media/jQaqFyTEXI7GRlgfpo/giphy.gif)
 
+## Code Highlights
+
+### Example of server Socket.IO event handler
+```javascript
+// Each event gets a unique string and a callback function that takes in an argument sent from the client
+socket.on('delete channel', (deleteObject) => {
+    const { channelId, serverId, userThatDeleted } = deleteObject;
+        
+    // Every client in the room except the client that emitted the original event gets the 'delete channel' event from the server and the necessary information
+    socket.in(`${serverId}`).broadcast.emit('delete channel', { channelId, userThatDeleted });
+})
+```
+
+
 ## Links
 
 [Back end repository](https://github.com/SauceKnight/DisChat)
