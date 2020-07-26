@@ -45,10 +45,43 @@ DisChat is a full-stack chat application in which users can create "servers" and
 
 ## Code Highlights
 
-### Example of client Socket.IO event handler
+
+### Path of a WebSocket event from client emitter to server, then to all relevant clients
+
+#### Client event emitter
+```javascript
+deleteFormConfirmButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const userThatDeleted = localStorage.getItem('DischatUserName')
+    
+    // Inside a click event handler, emit a WebSocket event to the server. The arguments are a string identifier and an object with necessary information
+    socket.emit('delete channel', { channelId: currentChannelId, serverId, userThatDeleted });
+    
+    // rest of code omitted
+});
+```
+
+#### Server Socket.IO event handler and emitter
+```javascript
+// All server WebSocket event handlers are inside here
+io.on('connection', (socket) => {
+
+// Each event has a string identifier and a callback function that takes in an argument sent from the client
+    socket.on('delete channel', (deleteObject) => {
+        const { channelId, serverId, userThatDeleted } = deleteObject;
+        
+        // Every client in the room except the client that emitted the original event gets the 'delete channel' event from the server and the necessary      information
+        socket.in(`${serverId}`).broadcast.emit('delete channel', { channelId, userThatDeleted });
+    })
+    
+    // rest of code omitted
+});
+```
+
+#### Client Socket.IO event handler
 
 ```javascript
-// Each event gets a unique string and a callback function that takes in an argument sent from the server
+// Each event has a string identifier and a callback function that takes in an argument sent from the server
 socket.on('delete channel', ({ channelId, userThatDeleted }) => {
     
     const channelList = document.querySelectorAll('.channels-li');
@@ -70,18 +103,6 @@ socket.on('delete channel', ({ channelId, userThatDeleted }) => {
     }
 })
 ```
-
-### Example of server Socket.IO event handler
-```javascript
-// Each event gets a unique string and a callback function that takes in an argument sent from the client
-socket.on('delete channel', (deleteObject) => {
-    const { channelId, serverId, userThatDeleted } = deleteObject;
-        
-    // Every client in the room except the client that emitted the original event gets the 'delete channel' event from the server and the necessary information
-    socket.in(`${serverId}`).broadcast.emit('delete channel', { channelId, userThatDeleted });
-})
-```
-
 
 ## Links
 
