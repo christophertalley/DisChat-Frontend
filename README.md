@@ -106,10 +106,10 @@ socket.on('delete channel', ({ channelId, userThatDeleted }) => {
 
 ## Links
 
-[Back end repository](https://github.com/SauceKnight/DisChat)
-[Endpoints](https://github.com/christophertalley/DisChat-Frontend/tree/master/documentation/endpoints)
-[Feature List](https://github.com/christophertalley/DisChat-Frontend/tree/master/documentation/feature-list)
-[Models](https://github.com/christophertalley/DisChat-Frontend/tree/master/documentation/models)
-[Wire Frames](https://github.com/christophertalley/DisChat-Frontend/tree/master/documentation/wire-frames)
+- [Back end repository](https://github.com/SauceKnight/DisChat)
+- [Endpoints](https://github.com/christophertalley/DisChat-Frontend/tree/master/documentation/endpoints)
+- [Feature List](https://github.com/christophertalley/DisChat-Frontend/tree/master/documentation/feature-list)
+- [Models](https://github.com/christophertalley/DisChat-Frontend/tree/master/documentation/models)
+- [Wire Frames](https://github.com/christophertalley/DisChat-Frontend/tree/master/documentation/wire-frames)
 
 
